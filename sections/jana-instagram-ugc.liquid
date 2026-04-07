@@ -1,0 +1,61 @@
+<!-- Jana Instagram / UGC Section -->
+<section class="jana-ugc">
+  <div class="jana-text-center" style="margin-bottom:2rem;padding:0 1rem;">
+    <p class="jana-section-head__label sans" style="margin-bottom:0.5rem;">{{ section.settings.label | default: 'Community' }}</p>
+    <h2 class="jana-section-head__title serif">{{ section.settings.heading | default: '#WearingJana' }}</h2>
+    <p style="font-size:0.75rem;color:var(--color-text-muted);margin-top:0.375rem;" class="sans">{{ section.settings.subtitle | default: 'Tag us on Instagram to be featured' }}</p>
+  </div>
+  @media(min-width:640px) {
+  <div class="jana-ugc__grid">
+    {% for block in section.blocks %}
+      <div class="jana-ugc__item" {{ block.shopify_attributes }}>
+        {% if block.settings.image != blank %}
+          <img src="{{ block.settings.image | image_url: width: 400 }}" alt="UGC photo" loading="lazy">
+        {% else %}
+          {{ 'lifestyle-' | append: forloop.index | placeholder_svg_tag: 'placeholder-svg' }}
+        {% endif %}
+        <div class="jana-ugc__item-overlay">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <rect x="2" y="2" width="20" height="20" rx="5"/>
+            <circle cx="12" cy="12" r="5"/>
+            <circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/>
+          </svg>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+
+  {% if section.settings.instagram_url != blank %}
+    <div class="jana-text-center" style="margin-top:1.5rem;">
+      <a href="{{ section.settings.instagram_url }}" class="jana-ugc__follow sans" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/></svg>
+        Follow Us
+      </a>
+    </div>
+  {% endif %}
+</section>
+
+{% schema %}
+{
+  "name": "Jana Instagram",
+  "class": "jana-section",
+  "settings": [
+    { "type": "text", "id": "label", "label": "Label", "default": "Community" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "#WearingJana" },
+    { "type": "text", "id": "subtitle", "label": "Subtitle", "default": "Tag us on Instagram to be featured" },
+    { "type": "url", "id": "instagram_url", "label": "Instagram URL" }
+  ],
+  "blocks": [
+    { "type": "photo", "name": "Photo", "settings": [
+      { "type": "image_picker", "id": "image", "label": "Image" }
+    ]}
+  ],
+  "presets": [{
+    "name": "Jana Instagram",
+    "blocks": [
+      { "type": "photo" }, { "type": "photo" }, { "type": "photo" },
+      { "type": "photo" }, { "type": "photo" }, { "type": "photo" }
+    ]
+  }]
+}
+{% endschema %}

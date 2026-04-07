@@ -1,98 +1,77 @@
-<!-- Jana Media with Text -->
-<section class="jana-section jana-reveal">
-  <div class="jana-container">
-    <div class="jana-media-text" style="{% if section.settings.reverse %}direction: rtl;{% endif %}">
-      <!-- Image -->
-      <div class="jana-media-text__image">
-        {% if section.settings.image != blank %}
-          <img
-            src="{{ section.settings.image | image_url: width: 900 }}"
-            alt="{{ section.settings.heading | escape }}"
-            width="900"
-            height="1125"
-            loading="lazy"
-          >
-        {% else %}
-          {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
-        {% endif %}
+<!-- Jana Brand Story / Media with Text -->
+<section class="jana-story">
+  <!-- Image -->
+  <div class="jana-story__media">
+    {% if section.settings.image != blank %}
+      <img src="{{ section.settings.image | image_url: width: 900 }}" alt="{{ section.settings.heading | escape }}" loading="lazy">
+    {% else %}
+      {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
+    {% endif %}
+    <div class="jana-story__media-overlay"></div>
+    {% if section.settings.tag != blank %}
+      <p class="jana-story__media-tag sans">{{ section.settings.tag }}</p>
+    {% endif %}
+  </div>
+
+  <!-- Content -->
+  <div class="jana-story__content">
+    <p class="jana-section-head__label sans" style="margin-bottom:1rem;">{{ section.settings.label | default: 'Our Philosophy' }}</p>
+    <h2 class="jana-section-head__title serif" style="font-size:clamp(1.875rem,4vw,3rem);margin-bottom:1.25rem;">{{ section.settings.heading | default: 'Dressed in Silence' }}</h2>
+    <div class="jana-story__divider"></div>
+
+    {% if section.settings.text_1 != blank %}
+      <p class="jana-story__text sans">{{ section.settings.text_1 }}</p>
+    {% endif %}
+    {% if section.settings.text_2 != blank %}
+      <p class="jana-story__text sans">{{ section.settings.text_2 }}</p>
+    {% endif %}
+
+    <!-- Stats -->
+    {% if section.settings.stat_1_value != blank %}
+      <div class="jana-story__stats">
+        <div>
+          <p class="jana-story__stat-value serif">{{ section.settings.stat_1_value }}</p>
+          <p class="jana-story__stat-label sans">{{ section.settings.stat_1_label }}</p>
+        </div>
+        <div>
+          <p class="jana-story__stat-value serif">{{ section.settings.stat_2_value }}</p>
+          <p class="jana-story__stat-label sans">{{ section.settings.stat_2_label }}</p>
+        </div>
+        <div>
+          <p class="jana-story__stat-value serif">{{ section.settings.stat_3_value }}</p>
+          <p class="jana-story__stat-label sans">{{ section.settings.stat_3_label }}</p>
+        </div>
       </div>
+    {% endif %}
 
-      <!-- Content -->
-      <div class="jana-media-text__content" style="direction: ltr;">
-        {% if section.settings.subtitle != blank %}
-          <p class="jana-label" style="margin-bottom: 1rem;">{{ section.settings.subtitle }}</p>
-        {% endif %}
-
-        <h2 class="jana-heading jana-heading-md jana-serif" style="margin-bottom: 1rem;">
-          {{ section.settings.heading | default: 'Our Story' }}
-        </h2>
-
-        {% if section.settings.text != blank %}
-          <p class="jana-body" style="color: var(--jana-muted); margin-bottom: 1.5rem; max-width: 420px;">
-            {{ section.settings.text }}
-          </p>
-        {% endif %}
-
-        {% if section.settings.button_text != blank %}
-          <a href="{{ section.settings.button_link }}" class="jana-btn jana-btn--secondary">
-            {{ section.settings.button_text }}
-          </a>
-        {% endif %}
-      </div>
-    </div>
+    {% if section.settings.cta_text != blank %}
+      <a href="{{ section.settings.cta_link | default: '/pages/about' }}" class="jana-story__cta sans">
+        {{ section.settings.cta_text }} <span></span>
+      </a>
+    {% endif %}
   </div>
 </section>
 
 {% schema %}
 {
-  "name": "Jana Media with Text",
-  "class": "jana-media-text-section",
+  "name": "Jana Brand Story",
+  "class": "jana-section",
   "settings": [
-    {
-      "type": "image_picker",
-      "id": "image",
-      "label": "Image"
-    },
-    {
-      "type": "text",
-      "id": "subtitle",
-      "label": "Subtitle",
-      "default": "Our Story"
-    },
-    {
-      "type": "text",
-      "id": "heading",
-      "label": "Heading",
-      "default": "Crafted with Purpose"
-    },
-    {
-      "type": "textarea",
-      "id": "text",
-      "label": "Text",
-      "default": "Every piece in our collection is thoughtfully designed with sustainability and timeless style in mind."
-    },
-    {
-      "type": "text",
-      "id": "button_text",
-      "label": "Button Text",
-      "default": "Learn More"
-    },
-    {
-      "type": "url",
-      "id": "button_link",
-      "label": "Button Link"
-    },
-    {
-      "type": "checkbox",
-      "id": "reverse",
-      "label": "Reverse Layout",
-      "default": false
-    }
+    { "type": "image_picker", "id": "image", "label": "Image" },
+    { "type": "text", "id": "tag", "label": "Image Tag", "default": "Est. 2019" },
+    { "type": "text", "id": "label", "label": "Label", "default": "Our Philosophy" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Dressed in Silence" },
+    { "type": "textarea", "id": "text_1", "label": "Paragraph 1", "default": "We believe that true elegance lies in simplicity. Each piece in our collection is thoughtfully designed to transcend seasons and trends." },
+    { "type": "textarea", "id": "text_2", "label": "Paragraph 2", "default": "Our commitment to sustainable practices means every garment is crafted with care for both the wearer and the world." },
+    { "type": "text", "id": "stat_1_value", "label": "Stat 1 Value", "default": "200+" },
+    { "type": "text", "id": "stat_1_label", "label": "Stat 1 Label", "default": "Styles" },
+    { "type": "text", "id": "stat_2_value", "label": "Stat 2 Value", "default": "30+" },
+    { "type": "text", "id": "stat_2_label", "label": "Stat 2 Label", "default": "Countries" },
+    { "type": "text", "id": "stat_3_value", "label": "Stat 3 Value", "default": "100%" },
+    { "type": "text", "id": "stat_3_label", "label": "Stat 3 Label", "default": "Sustainable" },
+    { "type": "text", "id": "cta_text", "label": "CTA Text", "default": "Read Our Story" },
+    { "type": "url", "id": "cta_link", "label": "CTA Link" }
   ],
-  "presets": [
-    {
-      "name": "Jana Media with Text"
-    }
-  ]
+  "presets": [{ "name": "Jana Brand Story" }]
 }
 {% endschema %}

@@ -3,130 +3,106 @@
     "jana_hero": {
       "type": "jana-hero",
       "blocks": {
-        "slide_1": {
-          "type": "slide",
-          "settings": {
-            "subtitle": "Spring / Summer 2025",
-            "heading": "Minimal Elegance",
-            "button_text": "Explore Collection"
-          }
-        },
-        "slide_2": {
-          "type": "slide",
-          "settings": {
-            "subtitle": "New Arrivals",
-            "heading": "Effortless Style",
-            "button_text": "Shop Now"
-          }
-        }
+        "slide_1": { "type": "slide", "settings": { "label": "Spring / Summer 2025", "heading": "The\nEdit", "button_text": "Explore Collection", "secondary_text": "View All" } },
+        "slide_2": { "type": "slide", "settings": { "label": "New Arrivals", "heading": "Effortless\nStyle", "button_text": "Shop New In" } },
+        "slide_3": { "type": "slide", "settings": { "label": "Curated Essentials", "heading": "Less\nIs More", "button_text": "Shop Essentials" } }
       },
-      "block_order": ["slide_1", "slide_2"],
-      "settings": {
-        "height": 100
-      }
+      "block_order": ["slide_1", "slide_2", "slide_3"],
+      "settings": { "height": 85, "overlay_opacity": 30 }
     },
-    "jana_collection_links": {
-      "type": "jana-collection-links",
+    "jana_ticker": {
+      "type": "jana-marquee-ticker",
       "blocks": {
-        "link_1": {
-          "type": "link",
-          "settings": {
-            "label": "Women"
-          }
-        },
-        "link_2": {
-          "type": "link",
-          "settings": {
-            "label": "Men"
-          }
-        },
-        "link_3": {
-          "type": "link",
-          "settings": {
-            "label": "New Arrivals"
-          }
-        },
-        "link_4": {
-          "type": "link",
-          "settings": {
-            "label": "Sale"
-          }
-        }
+        "t1": { "type": "text", "settings": { "text": "Free Shipping Over $150" } },
+        "t2": { "type": "text", "settings": { "text": "New Collection SS25" } },
+        "t3": { "type": "text", "settings": { "text": "Sustainably Made" } },
+        "t4": { "type": "text", "settings": { "text": "Ethically Sourced" } },
+        "t5": { "type": "text", "settings": { "text": "Free Returns 30 Days" } }
       },
-      "block_order": ["link_1", "link_2", "link_3", "link_4"],
-      "settings": {
-        "show_all": true
-      }
+      "block_order": ["t1", "t2", "t3", "t4", "t5"],
+      "settings": {}
     },
-    "jana_featured_1": {
-      "type": "jana-featured-collection",
-      "settings": {
-        "heading": "New Arrivals",
-        "max_products": 8,
-        "columns_desktop": 4,
-        "columns_mobile": 2,
-        "link_text": "View All"
-      }
-    },
-    "jana_marquee": {
-      "type": "jana-marquee",
+    "jana_trust": {
+      "type": "jana-trust-bar",
       "blocks": {
-        "text_1": {
-          "type": "text",
-          "settings": { "text": "New Collection" }
-        },
-        "text_2": {
-          "type": "text",
-          "settings": { "text": "Minimal Elegance" }
-        },
-        "text_3": {
-          "type": "text",
-          "settings": { "text": "Free Shipping" }
-        },
-        "text_4": {
-          "type": "text",
-          "settings": { "text": "Sustainable Fashion" }
-        }
+        "i1": { "type": "item", "settings": { "icon": "🚚", "title": "Free Shipping", "desc": "Orders over $150" } },
+        "i2": { "type": "item", "settings": { "icon": "↩️", "title": "Free Returns", "desc": "Within 30 days" } },
+        "i3": { "type": "item", "settings": { "icon": "🌿", "title": "Sustainable", "desc": "Ethically sourced" } },
+        "i4": { "type": "item", "settings": { "icon": "🔒", "title": "Secure Checkout", "desc": "SSL encrypted" } },
+        "i5": { "type": "item", "settings": { "icon": "✨", "title": "Quality Guarantee", "desc": "Premium materials" } }
       },
-      "block_order": ["text_1", "text_2", "text_3", "text_4"]
+      "block_order": ["i1", "i2", "i3", "i4", "i5"],
+      "settings": {}
     },
-    "jana_media_text": {
+    "jana_edit": {
+      "type": "jana-featured-asymmetric",
+      "settings": { "label": "Curated Selection", "heading": "The Edit" }
+    },
+    "jana_countdown": {
+      "type": "jana-countdown",
+      "settings": { "label": "Limited Time Offer", "heading": "25% Off The SS25 Edit", "code": "JANA25", "hours": 24, "button_text": "Shop the Sale" }
+    },
+    "jana_story": {
       "type": "jana-media-with-text",
       "settings": {
-        "subtitle": "Our Story",
-        "heading": "Crafted with Purpose",
-        "text": "Every piece in our collection is thoughtfully designed with sustainability and timeless style in mind.",
-        "button_text": "Learn More",
-        "reverse": false
+        "tag": "Est. 2019",
+        "label": "Our Philosophy",
+        "heading": "Dressed in Silence",
+        "text_1": "We believe that true elegance lies in simplicity. Each piece in our collection is thoughtfully designed to transcend seasons and trends.",
+        "text_2": "Our commitment to sustainable practices means every garment is crafted with care for both the wearer and the world.",
+        "stat_1_value": "200+", "stat_1_label": "Styles",
+        "stat_2_value": "30+", "stat_2_label": "Countries",
+        "stat_3_value": "100%", "stat_3_label": "Sustainable",
+        "cta_text": "Read Our Story"
       }
     },
-    "jana_featured_2": {
+    "jana_products": {
       "type": "jana-featured-collection",
-      "settings": {
-        "heading": "Best Sellers",
-        "max_products": 4,
-        "columns_desktop": 4,
-        "columns_mobile": 2,
-        "link_text": "Shop All"
-      }
+      "settings": { "heading": "View All", "max_products": 8, "columns_desktop": 4, "columns_mobile": 2, "link_text": "View All" }
+    },
+    "jana_ugc": {
+      "type": "jana-instagram-ugc",
+      "blocks": {
+        "p1": { "type": "photo" }, "p2": { "type": "photo" }, "p3": { "type": "photo" },
+        "p4": { "type": "photo" }, "p5": { "type": "photo" }, "p6": { "type": "photo" }
+      },
+      "block_order": ["p1", "p2", "p3", "p4", "p5", "p6"],
+      "settings": { "label": "Community", "heading": "#WearingJana", "subtitle": "Tag us on Instagram to be featured" }
+    },
+    "jana_press": {
+      "type": "jana-press-bar",
+      "blocks": {
+        "pr1": { "type": "press", "settings": { "name": "Vogue", "quote": "Effortless luxury at its finest." } },
+        "pr2": { "type": "press", "settings": { "name": "Elle", "quote": "A new standard in minimal fashion." } },
+        "pr3": { "type": "press", "settings": { "name": "Harper's Bazaar", "quote": "Simply beautiful." } },
+        "pr4": { "type": "press", "settings": { "name": "The Independent", "quote": "Fashion with conscience." } },
+        "pr5": { "type": "press", "settings": { "name": "Refinery29", "quote": "Clean lines, clear purpose." } }
+      },
+      "block_order": ["pr1", "pr2", "pr3", "pr4", "pr5"],
+      "settings": {}
     },
     "jana_newsletter": {
       "type": "jana-newsletter",
       "settings": {
-        "heading": "Stay in the Loop",
-        "text": "Be the first to know about new collections, exclusive offers and style inspiration.",
-        "placeholder": "Enter your email",
-        "button_text": "Subscribe"
+        "label": "Newsletter",
+        "heading": "Stay in the Know",
+        "description": "Subscribe and get 10% off your first order.",
+        "placeholder": "Your email address",
+        "button_text": "Join",
+        "note": "No spam. Unsubscribe anytime."
       }
     }
   },
   "order": [
     "jana_hero",
-    "jana_collection_links",
-    "jana_featured_1",
-    "jana_marquee",
-    "jana_media_text",
-    "jana_featured_2",
+    "jana_ticker",
+    "jana_trust",
+    "jana_edit",
+    "jana_countdown",
+    "jana_story",
+    "jana_products",
+    "jana_ugc",
+    "jana_press",
     "jana_newsletter"
   ]
 }

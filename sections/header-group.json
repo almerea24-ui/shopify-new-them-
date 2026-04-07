@@ -1,12 +1,3 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "type": "header",
   "name": "Header",
@@ -14,46 +5,26 @@
     "jana_announcement": {
       "type": "jana-announcement-bar",
       "blocks": {
-        "msg_1": {
-          "type": "message",
-          "settings": {
-            "text": "Free shipping on orders over $150"
-          }
-        },
-        "msg_2": {
-          "type": "message",
-          "settings": {
-            "text": "New Season Collection Available"
-          }
-        },
-        "msg_3": {
-          "type": "message",
-          "settings": {
-            "text": "Easy Returns Within 30 Days"
-          }
-        }
+        "msg_1": { "type": "message", "settings": { "text": "Free shipping on orders over $150" } },
+        "msg_2": { "type": "message", "settings": { "text": "New Collection SS25 — Shop Now" } },
+        "msg_3": { "type": "message", "settings": { "text": "Free returns within 30 days" } }
       },
       "block_order": ["msg_1", "msg_2", "msg_3"],
-      "settings": {
-        "bg_color": "#111111",
-        "text_color": "#ffffff"
-      }
+      "settings": { "bg_color": "#111111", "text_color": "#ffffff" }
     },
     "jana_header": {
       "type": "jana-header",
-      "settings": {
-        "logo_text": "JANA",
-        "menu": "main-menu",
-        "transparent": false,
-        "show_account": true,
-        "show_wishlist": false,
-        "menu_title": "Menu",
-        "search_placeholder": "Search..."
-      }
+      "blocks": {
+        "tag_1": { "type": "search_tag", "settings": { "text": "Tops" } },
+        "tag_2": { "type": "search_tag", "settings": { "text": "Dresses" } },
+        "tag_3": { "type": "search_tag", "settings": { "text": "Outerwear" } },
+        "tag_4": { "type": "search_tag", "settings": { "text": "Accessories" } },
+        "tag_5": { "type": "search_tag", "settings": { "text": "Linen" } },
+        "tag_6": { "type": "search_tag", "settings": { "text": "Cashmere" } }
+      },
+      "block_order": ["tag_1", "tag_2", "tag_3", "tag_4", "tag_5", "tag_6"],
+      "settings": { "logo_text": "JANA", "menu": "main-menu" }
     }
   },
-  "order": [
-    "jana_announcement",
-    "jana_header"
-  ]
+  "order": ["jana_announcement", "jana_header"]
 }

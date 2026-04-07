@@ -1,0 +1,40 @@
+<!-- Jana Press Bar / As Seen In -->
+<section class="jana-press">
+  <p class="jana-press__label sans">{{ section.settings.label | default: 'As Seen In' }}</p>
+  <div class="jana-press__list jana-container">
+    {% for block in section.blocks %}
+      <div class="jana-press__item" {{ block.shopify_attributes }}>
+        <p class="jana-press__name serif">{{ block.settings.name }}</p>
+        {% if block.settings.quote != blank %}
+          <p class="jana-press__quote sans">"{{ block.settings.quote }}"</p>
+        {% endif %}
+      </div>
+    {% endfor %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Jana Press Bar",
+  "class": "jana-section",
+  "settings": [
+    { "type": "text", "id": "label", "label": "Label", "default": "As Seen In" }
+  ],
+  "blocks": [
+    { "type": "press", "name": "Publication", "settings": [
+      { "type": "text", "id": "name", "label": "Name", "default": "Vogue" },
+      { "type": "text", "id": "quote", "label": "Quote", "default": "Effortless luxury at its finest." }
+    ]}
+  ],
+  "presets": [{
+    "name": "Jana Press Bar",
+    "blocks": [
+      { "type": "press", "settings": { "name": "Vogue", "quote": "Effortless luxury at its finest." } },
+      { "type": "press", "settings": { "name": "Elle", "quote": "A new standard in minimal fashion." } },
+      { "type": "press", "settings": { "name": "Harper's Bazaar", "quote": "Simply beautiful." } },
+      { "type": "press", "settings": { "name": "The Independent", "quote": "Fashion with conscience." } },
+      { "type": "press", "settings": { "name": "Refinery29", "quote": "Clean lines, clear purpose." } }
+    ]
+  }]
+}
+{% endschema %}

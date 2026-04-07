@@ -1,12 +1,3 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "type": "footer",
   "name": "Footer",
@@ -14,36 +5,19 @@
     "jana_footer": {
       "type": "jana-footer",
       "blocks": {
-        "menu_shop": {
-          "type": "menu",
-          "settings": {
-            "heading": "Shop"
-          }
-        },
-        "menu_help": {
-          "type": "menu",
-          "settings": {
-            "heading": "Help"
-          }
-        },
-        "newsletter": {
-          "type": "newsletter",
-          "settings": {
-            "heading": "Newsletter",
-            "text": "Get exclusive offers and updates.",
-            "placeholder": "Your email",
-            "button_text": "Subscribe"
-          }
-        }
+        "col_shop": { "type": "menu", "settings": { "heading": "Shop" } },
+        "col_help": { "type": "menu", "settings": { "heading": "Help" } },
+        "col_company": { "type": "menu", "settings": { "heading": "Company" } }
       },
-      "block_order": ["menu_shop", "menu_help", "newsletter"],
+      "block_order": ["col_shop", "col_help", "col_company"],
       "settings": {
         "brand_name": "JANA",
-        "brand_description": "Premium minimal fashion. Thoughtfully designed, sustainably made."
+        "tagline": "Premium minimal fashion. Thoughtfully designed, sustainably made.",
+        "email": "hello@jana.com",
+        "phone": "+44 7700 900000",
+        "hours": "Mon-Fri, 9am-6pm GMT"
       }
     }
   },
-  "order": [
-    "jana_footer"
-  ]
+  "order": ["jana_footer"]
 }

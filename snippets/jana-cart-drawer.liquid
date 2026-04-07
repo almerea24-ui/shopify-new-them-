@@ -1,91 +1,90 @@
 {%- comment -%}
-  Jana Cart Drawer
-  Render in theme.liquid: {% render 'jana-cart-drawer' %}
+  Jana Cart Drawer - With shipping progress, qty controls
 {%- endcomment -%}
 
-<!-- Cart Overlay -->
-<div class="jana-drawer-overlay" data-jana-cart-overlay></div>
+{%- liquid
+  assign free_shipping = 15000
+  assign cart_total = cart.total_price
+  assign remaining = free_shipping | minus: cart_total
+  assign progress = cart_total | times: 100 | divided_by: free_shipping | at_most: 100
+-%}
 
-<!-- Cart Drawer -->
-<div class="jana-cart-drawer" data-jana-cart-drawer>
+<!-- Overlay -->
+<div class="jana-cart-overlay" data-jana-cart-overlay></div>
+
+<!-- Drawer -->
+<div class="jana-cart" data-jana-cart-drawer role="dialog" aria-modal="true">
   <!-- Header -->
-  <div class="jana-cart-drawer__header">
-    <div style="display:flex; align-items:baseline;">
-      <span class="jana-cart-drawer__title jana-serif">Cart</span>
-      <span class="jana-cart-drawer__count">(<span data-jana-cart-count>{{ cart.item_count }}</span>)</span>
+  <div class="jana-cart__header">
+    <div>
+      <h2 class="jana-cart__title sans">Your Cart</h2>
+      <p class="jana-cart__count sans">{{ cart.item_count }} items</p>
     </div>
-    <button class="jana-cart-drawer__close" data-jana-cart-close aria-label="Close cart">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
-        <line x1="18" y1="6" x2="6" y2="18"></line>
-        <line x1="6" y1="6" x2="18" y2="18"></line>
-      </svg>
+    <button class="jana-cart__close" data-jana-cart-close aria-label="Close cart">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M18 6 6 18M6 6l12 12"/></svg>
     </button>
   </div>
 
-  <!-- Cart Items -->
-  <div class="jana-cart-drawer__items">
+  <!-- Shipping Progress -->
+  <div class="jana-cart__shipping">
+    {% if remaining > 0 %}
+      <p class="jana-cart__shipping-text sans">{{ remaining | money }} away from free shipping</p>
+    {% else %}
+      <p class="jana-cart__shipping-text sans" style="color:var(--color-success);">You've earned free shipping!</p>
+    {% endif %}
+    <div class="jana-cart__shipping-bar">
+      <div class="jana-cart__shipping-fill" style="width:{{ progress }}%;{% if progress >= 100 %}background:var(--color-success);{% endif %}"></div>
+    </div>
+  </div>
+
+  <!-- Items -->
+  <div class="jana-cart__body">
     {% if cart.item_count == 0 %}
-      <div class="jana-cart-drawer__empty">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
-          <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" stroke="currentColor" stroke-width="1"></path>
-          <line x1="3" y1="6" x2="21" y2="6" stroke="currentColor" stroke-width="1"></line>
-          <path d="M16 10a4 4 0 0 1-8 0" stroke="currentColor" stroke-width="1"></path>
-        </svg>
-        <p>Your cart is empty</p>
-        <a href="/collections/all" class="jana-btn jana-btn--primary" style="margin-top: 1rem; font-size: 0.625rem;">
-          Continue Shopping
-        </a>
+      <div class="jana-cart__empty">
+        <div class="jana-cart__empty-icon">
+          <svg viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        </div>
+        <p class="jana-cart__empty-text serif">Your cart is empty</p>
+        <a href="/collections/all" class="jana-cart__empty-btn sans">View All</a>
       </div>
     {% else %}
-      {% for item in cart.items %}
-        <div class="jana-cart-item">
-          <div class="jana-cart-item__image">
-            {% if item.image != blank %}
-              <a href="{{ item.url }}">
-                <img
-                  src="{{ item.image | image_url: width: 200 }}"
-                  alt="{{ item.title | escape }}"
-                  width="200"
-                  height="260"
-                  loading="lazy"
-                >
-              </a>
-            {% endif %}
-          </div>
-          <div class="jana-cart-item__details">
-            <a href="{{ item.url }}" class="jana-cart-item__title">{{ item.product.title }}</a>
-            {% if item.variant.title != 'Default Title' %}
-              <span class="jana-cart-item__variant">{{ item.variant.title }}</span>
-            {% endif %}
-
-            <div data-jana-qty style="margin-top: 0.5rem;">
-              <div class="jana-qty">
-                <button class="jana-qty__btn" data-jana-qty-btn="minus" aria-label="Decrease">-</button>
-                <span class="jana-qty__value" data-jana-qty-value>{{ item.quantity }}</span>
-                <button class="jana-qty__btn" data-jana-qty-btn="plus" aria-label="Increase">+</button>
+      <div style="display:flex;flex-direction:column;gap:0;">
+        {% for item in cart.items %}
+          <div class="jana-cart__item">
+            <div class="jana-cart__item-img">
+              {% if item.image != blank %}
+                <a href="{{ item.url }}"><img src="{{ item.image | image_url: width: 200 }}" alt="{{ item.title | escape }}" loading="lazy"></a>
+              {% endif %}
+            </div>
+            <div class="jana-cart__item-info">
+              <p class="jana-cart__item-name">{{ item.product.title }}</p>
+              {% if item.variant.title != 'Default Title' %}
+                <p class="jana-cart__item-variant sans">{{ item.variant.title }}</p>
+              {% endif %}
+              <div class="jana-cart__item-row">
+                <div class="jana-cart__qty" data-jana-qty>
+                  <button class="jana-cart__qty-btn sans" data-jana-qty-btn="minus" aria-label="Decrease">−</button>
+                  <span class="jana-cart__qty-value sans" data-jana-qty-value>{{ item.quantity }}</span>
+                  <button class="jana-cart__qty-btn sans" data-jana-qty-btn="plus" aria-label="Increase">+</button>
+                </div>
+                <p class="jana-cart__item-price">{{ item.final_line_price | money }}</p>
               </div>
             </div>
-
-            <span class="jana-cart-item__price">{{ item.final_line_price | money }}</span>
-
-            <a href="/cart/change?id={{ item.key }}&quantity=0" class="jana-cart-item__remove">Remove</a>
           </div>
-        </div>
-      {% endfor %}
+        {% endfor %}
+      </div>
     {% endif %}
   </div>
 
   <!-- Footer -->
   {% if cart.item_count > 0 %}
-    <div class="jana-cart-drawer__footer">
-      <div class="jana-cart-drawer__subtotal">
-        <span class="jana-cart-drawer__subtotal-label">Subtotal</span>
-        <span class="jana-cart-drawer__subtotal-value">{{ cart.total_price | money }}</span>
+    <div class="jana-cart__footer">
+      <div class="jana-cart__subtotal">
+        <span class="jana-cart__subtotal-label sans">Subtotal</span>
+        <span class="jana-cart__subtotal-value">{{ cart.total_price | money }}</span>
       </div>
-      <p class="jana-cart-drawer__shipping-note">Shipping & taxes calculated at checkout</p>
-      <a href="/checkout" class="jana-cart-drawer__checkout">
-        Checkout
-      </a>
+      <p class="jana-cart__shipping-note sans">Shipping & taxes calculated at checkout</p>
+      <a href="/checkout" class="jana-cart__checkout sans">Checkout</a>
     </div>
   {% endif %}
 </div>

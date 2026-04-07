@@ -1,0 +1,95 @@
+<!-- Jana Featured Asymmetric Grid -->
+<section class="jana-py-section">
+  <div class="jana-container">
+    <!-- Header -->
+    <div class="jana-section-head">
+      <div>
+        <p class="jana-section-head__label sans">{{ section.settings.label | default: 'Curated Selection' }}</p>
+        <h2 class="jana-section-head__title serif">{{ section.settings.heading | default: 'The Edit' }}</h2>
+      </div>
+      {% if section.settings.collection != blank %}
+        <a href="{{ section.settings.collection.url }}" class="jana-section-head__link sans">
+          View All Collection <span></span>
+        </a>
+      {% endif %}
+    </div>
+
+    <!-- Asymmetric Grid -->
+    <div class="jana-asymmetric">
+      {% if section.settings.collection != blank %}
+        {% assign products = section.settings.collection.products %}
+        {% if products.size > 0 %}
+          <!-- Large -->
+          <div class="jana-asymmetric__large">
+            {% assign p = products[0] %}
+            <a href="{{ p.url }}" class="jana-asymmetric__item">
+              {% if p.featured_image != blank %}
+                <img src="{{ p.featured_image | image_url: width: 900 }}" alt="{{ p.title | escape }}" loading="lazy">
+              {% endif %}
+              <div class="jana-asymmetric__item-overlay"></div>
+              {% if p.compare_at_price > p.price %}
+                <span class="jana-asymmetric__badge sans" style="background:#DC2626;">Sale</span>
+              {% elsif p.tags contains 'new' %}
+                <span class="jana-asymmetric__badge sans" style="background:#171717;">New</span>
+              {% endif %}
+              <button class="jana-asymmetric__quick-view sans">Quick View</button>
+              <div class="jana-asymmetric__item-info">
+                <p class="jana-asymmetric__item-cat sans">{{ p.type }}</p>
+                <p class="jana-asymmetric__item-name serif">{{ p.title }}</p>
+                <p class="jana-asymmetric__item-price sans">{{ p.price | money }}</p>
+              </div>
+            </a>
+          </div>
+          <!-- Right Stack -->
+          <div class="jana-asymmetric__stack">
+            {% for i in (1..2) %}
+              {% if products[i] %}
+                {% assign p = products[i] %}
+                <a href="{{ p.url }}" class="jana-asymmetric__item">
+                  {% if p.featured_image != blank %}
+                    <img src="{{ p.featured_image | image_url: width: 700 }}" alt="{{ p.title | escape }}" loading="lazy">
+                  {% endif %}
+                  <div class="jana-asymmetric__item-overlay"></div>
+                  <button class="jana-asymmetric__quick-view sans">Quick View</button>
+                  <div class="jana-asymmetric__item-info">
+                    <p class="jana-asymmetric__item-cat sans">{{ p.type }}</p>
+                    <p class="jana-asymmetric__item-name serif">{{ p.title }}</p>
+                    <p class="jana-asymmetric__item-price sans">{{ p.price | money }}</p>
+                  </div>
+                </a>
+              {% endif %}
+            {% endfor %}
+          </div>
+        {% endif %}
+      {% else %}
+        <div class="jana-asymmetric__large">
+          <div class="jana-asymmetric__item">
+            {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+            <div class="jana-asymmetric__item-info">
+              <p class="jana-asymmetric__item-cat sans">Category</p>
+              <p class="jana-asymmetric__item-name serif">Featured Product</p>
+              <p class="jana-asymmetric__item-price sans">$199.00</p>
+            </div>
+          </div>
+        </div>
+        <div class="jana-asymmetric__stack">
+          <div class="jana-asymmetric__item" style="aspect-ratio:4/3;">{{ 'product-2' | placeholder_svg_tag: 'placeholder-svg' }}</div>
+          <div class="jana-asymmetric__item" style="aspect-ratio:4/3;">{{ 'product-3' | placeholder_svg_tag: 'placeholder-svg' }}</div>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Jana Featured Edit",
+  "class": "jana-section",
+  "settings": [
+    { "type": "text", "id": "label", "label": "Label", "default": "Curated Selection" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "The Edit" },
+    { "type": "collection", "id": "collection", "label": "Collection" }
+  ],
+  "presets": [{ "name": "Jana Featured Edit" }]
+}
+{% endschema %}
