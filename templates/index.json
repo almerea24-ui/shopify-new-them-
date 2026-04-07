@@ -99,10 +99,20 @@
         "bg_color": "#111111",
         "text_color": "#ffffff"
       }
+    },
+    "jana_featured_asymmetric_hxnGNg": {
+      "type": "jana-featured-asymmetric",
+      "name": "Jana Featured Edit",
+      "settings": {
+        "label": "Curated Selection",
+        "heading": "The Edit",
+        "collection": ""
+      }
     }
   },
   "order": [
     "jana_hero_UqhdUd",
-    "jana_marquee_ticker_UCtypj"
+    "jana_marquee_ticker_UCtypj",
+    "jana_featured_asymmetric_hxnGNg"
   ]
 }
