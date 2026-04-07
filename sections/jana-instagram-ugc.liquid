@@ -5,7 +5,6 @@
     <h2 class="jana-section-head__title serif">{{ section.settings.heading | default: '#WearingJana' }}</h2>
     <p style="font-size:0.75rem;color:var(--color-text-muted);margin-top:0.375rem;" class="sans">{{ section.settings.subtitle | default: 'Tag us on Instagram to be featured' }}</p>
   </div>
-  @media(min-width:640px) {
   <div class="jana-ugc__grid">
     {% for block in section.blocks %}
       <div class="jana-ugc__item" {{ block.shopify_attributes }}>

@@ -198,18 +198,76 @@
     reveals.forEach(function(el){ obs.observe(el); });
   }
 
-  // --- Quantity Buttons ---
+  // --- Cart Quantity AJAX (persists to Shopify) ---
   document.addEventListener('click', function(e){
-    var btn = e.target.closest('[data-jana-qty-btn]');
+    var btn = e.target.closest('[data-jana-qty-change]');
     if(!btn) return;
     var container = btn.closest('[data-jana-qty]');
-    var val = container && container.querySelector('[data-jana-qty-value]');
-    if(!val) return;
-    var cur = parseInt(val.textContent)||1;
-    var action = btn.getAttribute('data-jana-qty-btn');
-    if(action==='minus'&&cur>1) val.textContent=cur-1;
-    else if(action==='plus') val.textContent=cur+1;
+    if(!container) return;
+    var key = container.getAttribute('data-line-key');
+    var valEl = container.querySelector('[data-jana-qty-value]');
+    if(!valEl || !key) return;
+    var cur = parseInt(valEl.textContent)||1;
+    var delta = parseInt(btn.getAttribute('data-jana-qty-change'))||0;
+    var newQty = Math.max(0, cur + delta);
+
+    valEl.textContent = newQty || '…';
+    fetch('/cart/change.js', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({id: key, quantity: newQty})
+    })
+    .then(function(r){ return r.json(); })
+    .then(function(cart){ refreshCartDrawer(cart); })
+    .catch(function(){ valEl.textContent = cur; });
   });
+
+  // --- Remove Cart Item ---
+  document.addEventListener('click', function(e){
+    var btn = e.target.closest('[data-jana-remove-item]');
+    if(!btn) return;
+    var key = btn.getAttribute('data-jana-remove-item');
+    if(!key) return;
+    var line = btn.closest('[data-jana-cart-line]');
+    if(line) line.style.opacity='0.4';
+
+    fetch('/cart/change.js', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({id: key, quantity: 0})
+    })
+    .then(function(r){ return r.json(); })
+    .then(function(cart){
+      if(line) line.remove();
+      refreshCartDrawer(cart);
+      if(cart.item_count === 0) location.reload();
+    });
+  });
+
+  // --- Continue Shopping button ---
+  document.addEventListener('click', function(e){
+    if(e.target.closest('[data-jana-continue-shopping]')) closeCart();
+  });
+
+  // --- Order Note Toggle ---
+  document.addEventListener('click', function(e){
+    var toggle = e.target.closest('[data-jana-note-toggle]');
+    if(!toggle) return;
+    var field = document.querySelector('[data-jana-note-field]');
+    if(field){ field.style.display = field.style.display==='none' ? 'block' : 'none'; if(field.style.display==='block') field.focus(); }
+  });
+
+  // --- Order Note Save (on blur) ---
+  var noteField = document.querySelector('[data-jana-note-field]');
+  if(noteField){
+    noteField.addEventListener('blur', function(){
+      fetch('/cart/update.js', {
+        method: 'POST',
+        headers: {'Content-Type':'application/json'},
+        body: JSON.stringify({note: noteField.value})
+      });
+    });
+  }
 
   // --- Add to Cart AJAX ---
   document.addEventListener('submit', function(e){
@@ -223,21 +281,42 @@
     fetch('/cart/add.js', {method:'POST', body:new FormData(form)})
     .then(function(r){ return r.json(); })
     .then(function(){
-      if(btn){ btn.textContent='Added!'; setTimeout(function(){ btn.textContent=origText; btn.disabled=false; },1500); }
+      if(btn){ btn.textContent='✓ Added'; setTimeout(function(){ btn.textContent=origText; btn.disabled=false; },1500); }
       updateCartCount();
       openCart();
     })
     .catch(function(){ if(btn){ btn.textContent=origText; btn.disabled=false; } });
   });
 
+  // --- Refresh Cart Drawer (update counts, totals, shipping bar) ---
+  function refreshCartDrawer(cart){
+    // Update all cart count badges
+    document.querySelectorAll('[data-jana-cart-count]').forEach(function(el){
+      el.textContent = cart.item_count;
+      el.style.display = cart.item_count > 0 ? 'flex' : 'none';
+    });
+    // Update item count text
+    document.querySelectorAll('[data-jana-cart-item-count]').forEach(function(el){ el.textContent = cart.item_count; });
+    // Update total
+    var totalEl = document.querySelector('[data-jana-cart-total]');
+    if(totalEl) totalEl.textContent = formatMoney(cart.total_price);
+    // Update shipping bar
+    var threshold = 15000;
+    var remaining = Math.max(0, threshold - cart.total_price);
+    var pct = Math.min(100, (cart.total_price / threshold) * 100);
+    var msgEl = document.querySelector('[data-jana-shipping-msg]');
+    var barEl = document.querySelector('[data-jana-shipping-bar]');
+    if(msgEl) msgEl.textContent = remaining > 0 ? formatMoney(remaining) + ' away from free shipping' : '🎉 You\'ve earned free shipping!';
+    if(barEl){ barEl.style.width = pct + '%'; barEl.style.background = pct >= 100 ? 'var(--color-success)' : ''; }
+  }
+
+  function formatMoney(cents){
+    return '$' + (cents / 100).toFixed(2);
+  }
+
   // --- Update Cart Count ---
   function updateCartCount(){
-    fetch('/cart.js').then(function(r){ return r.json(); }).then(function(cart){
-      document.querySelectorAll('[data-jana-cart-count]').forEach(function(el){
-        el.textContent = cart.item_count;
-        el.style.display = cart.item_count > 0 ? 'flex' : 'none';
-      });
-    });
+    fetch('/cart.js').then(function(r){ return r.json(); }).then(function(cart){ refreshCartDrawer(cart); });
   }
   updateCartCount();
 

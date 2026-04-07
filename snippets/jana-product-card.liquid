@@ -86,11 +86,45 @@
     </div>
 
     <!-- Color Swatches -->
-    {% if product.options_by_name['Color'] %}
+    {%- liquid
+      assign color_option = product.options_by_name['Color']
+      unless color_option
+        assign color_option = product.options_by_name['Colour']
+      endunless
+    -%}
+    {% if color_option %}
       <div class="jana-card__swatches">
-        {% for value in product.options_by_name['Color'].values %}
-          <span class="jana-card__swatch {% if forloop.first %}jana-card__swatch--active{% endif %}" style="background-color:{{ value | handleize }};" title="{{ value }}"></span>
+        {%- assign max_swatches = 6 -%}
+        {% for value in color_option.values limit: max_swatches %}
+          {%- assign swatch_color = value | downcase | replace: ' ', '' -%}
+          {%- comment -%} Map common color names to hex {%- endcomment -%}
+          {%- case swatch_color -%}
+            {%- when 'black' -%}{%- assign hex = '#000000' -%}
+            {%- when 'white' -%}{%- assign hex = '#ffffff' -%}
+            {%- when 'red' -%}{%- assign hex = '#dc2626' -%}
+            {%- when 'blue' -%}{%- assign hex = '#2563eb' -%}
+            {%- when 'navy' -%}{%- assign hex = '#1e3a5f' -%}
+            {%- when 'green' -%}{%- assign hex = '#16a34a' -%}
+            {%- when 'beige' -%}{%- assign hex = '#d4b896' -%}
+            {%- when 'cream' -%}{%- assign hex = '#fffdd0' -%}
+            {%- when 'tan' -%}{%- assign hex = '#d2b48c' -%}
+            {%- when 'brown' -%}{%- assign hex = '#8b4513' -%}
+            {%- when 'grey','gray' -%}{%- assign hex = '#9ca3af' -%}
+            {%- when 'pink' -%}{%- assign hex = '#ec4899' -%}
+            {%- when 'orange' -%}{%- assign hex = '#f97316' -%}
+            {%- when 'yellow' -%}{%- assign hex = '#eab308' -%}
+            {%- when 'purple' -%}{%- assign hex = '#9333ea' -%}
+            {%- when 'olive' -%}{%- assign hex = '#6b7c3e' -%}
+            {%- when 'khaki' -%}{%- assign hex = '#c3b091' -%}
+            {%- when 'camel' -%}{%- assign hex = '#c19a6b' -%}
+            {%- else -%}{%- assign hex = swatch_color -%}
+          {%- endcase -%}
+          <span class="jana-card__swatch {% if forloop.first %}jana-card__swatch--active{% endif %}" style="background-color:{{ hex }};" title="{{ value }}"></span>
         {% endfor %}
+        {%- if color_option.values.size > max_swatches -%}
+          {%- assign extra = color_option.values.size | minus: max_swatches -%}
+          <span style="font-size:9px;color:var(--color-text-muted);" class="sans">+{{ extra }}</span>
+        {%- endif -%}
       </div>
     {% endif %}
   </div>
