@@ -17,7 +17,7 @@
           "settings": {
             "label": "Spring / Summer 2025",
             "heading": "The\nEdit",
-            "body": "Discover our latest collection of thoughtfully designed, sustainably made fashion.",
+            "body": "",
             "button_text": "Explore Collection",
             "button_link": "",
             "secondary_text": "View All",
@@ -100,46 +100,6 @@
         "text_color": "#ffffff"
       }
     },
-    "jana_trust_bar": {
-      "type": "jana-trust-bar",
-      "blocks": {
-        "trust_1": {
-          "type": "item",
-          "settings": {
-            "icon": "🚚",
-            "title": "Free Shipping",
-            "desc": "On orders over $150"
-          }
-        },
-        "trust_2": {
-          "type": "item",
-          "settings": {
-            "icon": "↩️",
-            "title": "Free Returns",
-            "desc": "Within 30 days"
-          }
-        },
-        "trust_3": {
-          "type": "item",
-          "settings": {
-            "icon": "🌿",
-            "title": "Sustainable",
-            "desc": "Ethically sourced"
-          }
-        },
-        "trust_4": {
-          "type": "item",
-          "settings": {
-            "icon": "🔒",
-            "title": "Secure Checkout",
-            "desc": "256-bit SSL"
-          }
-        }
-      },
-      "block_order": ["trust_1", "trust_2", "trust_3", "trust_4"],
-      "name": "Jana Trust Bar",
-      "settings": {}
-    },
     "jana_featured_asymmetric_hxnGNg": {
       "type": "jana-featured-asymmetric",
       "name": "Jana Featured Edit",
@@ -149,18 +109,7 @@
         "collection": ""
       }
     },
-    "jana_featured_collection": {
-      "type": "jana-featured-collection",
-      "name": "Featured Collection",
-      "settings": {
-        "heading": "New Arrivals",
-        "max_products": 8,
-        "columns_desktop": 4,
-        "columns_mobile": 2,
-        "link_text": "View All"
-      }
-    },
-    "jana_countdown": {
+    "jana_countdown_FJbjpq": {
       "type": "jana-countdown",
       "name": "Jana Countdown",
       "settings": {
@@ -168,10 +117,11 @@
         "heading": "Sale Ends Tonight",
         "code": "JANA25",
         "hours": 24,
-        "button_text": "Shop the Sale"
+        "button_text": "Shop the Sale",
+        "button_link": ""
       }
     },
-    "jana_story": {
+    "jana_media_with_text_KFydaE": {
       "type": "jana-media-with-text",
       "name": "Jana Brand Story",
       "settings": {
@@ -186,44 +136,161 @@
         "stat_2_label": "Customers",
         "stat_3_value": "120+",
         "stat_3_label": "Countries",
-        "cta_text": "About Us"
+        "cta_text": "About Us",
+        "cta_link": ""
       }
     },
-    "jana_press": {
+    "jana_press_bar_PHXBCG": {
       "type": "jana-press-bar",
       "blocks": {
-        "pr1": { "type": "press", "settings": { "name": "Vogue", "quote": "Effortless luxury at its finest." } },
-        "pr2": { "type": "press", "settings": { "name": "Elle", "quote": "A new standard in minimal fashion." } },
-        "pr3": { "type": "press", "settings": { "name": "Harper's Bazaar", "quote": "Simply beautiful." } },
-        "pr4": { "type": "press", "settings": { "name": "The Independent", "quote": "Fashion with conscience." } },
-        "pr5": { "type": "press", "settings": { "name": "Refinery29", "quote": "Clean lines, clear purpose." } }
+        "press_EPjnxF": {
+          "type": "press",
+          "settings": {
+            "name": "Vogue",
+            "quote": "Effortless luxury at its finest."
+          }
+        },
+        "press_tpLnbD": {
+          "type": "press",
+          "settings": {
+            "name": "Elle",
+            "quote": "A new standard in minimal fashion."
+          }
+        },
+        "press_fyFpWK": {
+          "type": "press",
+          "settings": {
+            "name": "Harper's Bazaar",
+            "quote": "Simply beautiful."
+          }
+        },
+        "press_Vwzkwg": {
+          "type": "press",
+          "settings": {
+            "name": "The Independent",
+            "quote": "Fashion with conscience."
+          }
+        },
+        "press_GB6XcH": {
+          "type": "press",
+          "settings": {
+            "name": "Refinery29",
+            "quote": "Clean lines, clear purpose."
+          }
+        }
       },
-      "block_order": ["pr1", "pr2", "pr3", "pr4", "pr5"],
+      "block_order": [
+        "press_EPjnxF",
+        "press_tpLnbD",
+        "press_fyFpWK",
+        "press_Vwzkwg",
+        "press_GB6XcH"
+      ],
       "name": "Jana Press Bar",
-      "settings": {}
+      "settings": {
+        "label": "As Seen In"
+      }
     },
-    "jana_ugc": {
+    "jana_press_bar_Yx4WjK": {
+      "type": "jana-press-bar",
+      "blocks": {
+        "press_9NE3cX": {
+          "type": "press",
+          "settings": {
+            "name": "Vogue",
+            "quote": "Effortless luxury at its finest."
+          }
+        },
+        "press_YWM74M": {
+          "type": "press",
+          "settings": {
+            "name": "Elle",
+            "quote": "A new standard in minimal fashion."
+          }
+        },
+        "press_C64nF7": {
+          "type": "press",
+          "settings": {
+            "name": "Harper's Bazaar",
+            "quote": "Simply beautiful."
+          }
+        },
+        "press_AWwRxg": {
+          "type": "press",
+          "settings": {
+            "name": "The Independent",
+            "quote": "Fashion with conscience."
+          }
+        },
+        "press_wAKKEW": {
+          "type": "press",
+          "settings": {
+            "name": "Refinery29",
+            "quote": "Clean lines, clear purpose."
+          }
+        }
+      },
+      "block_order": [
+        "press_9NE3cX",
+        "press_YWM74M",
+        "press_C64nF7",
+        "press_AWwRxg",
+        "press_wAKKEW"
+      ],
+      "name": "Jana Press Bar",
+      "settings": {
+        "label": "As Seen In"
+      }
+    },
+    "jana_instagram_ugc_n8k4hG": {
       "type": "jana-instagram-ugc",
       "blocks": {
-        "p1": { "type": "photo" },
-        "p2": { "type": "photo" },
-        "p3": { "type": "photo" },
-        "p4": { "type": "photo" },
-        "p5": { "type": "photo" },
-        "p6": { "type": "photo" }
+        "photo_zBn4w9": {
+          "type": "photo",
+          "settings": {}
+        },
+        "photo_BMDmKH": {
+          "type": "photo",
+          "settings": {}
+        },
+        "photo_PYxG9g": {
+          "type": "photo",
+          "settings": {}
+        },
+        "photo_keYd8P": {
+          "type": "photo",
+          "settings": {}
+        },
+        "photo_mdXNbM": {
+          "type": "photo",
+          "settings": {}
+        },
+        "photo_CG8xpX": {
+          "type": "photo",
+          "settings": {}
+        }
       },
-      "block_order": ["p1", "p2", "p3", "p4", "p5", "p6"],
+      "block_order": [
+        "photo_zBn4w9",
+        "photo_BMDmKH",
+        "photo_PYxG9g",
+        "photo_keYd8P",
+        "photo_mdXNbM",
+        "photo_CG8xpX"
+      ],
       "name": "Jana Instagram",
       "settings": {
         "label": "Community",
         "heading": "#WearingJana",
-        "subtitle": "Tag us on Instagram to be featured"
+        "subtitle": "Tag us on Instagram to be featured",
+        "instagram_url": ""
       }
     },
-    "jana_newsletter": {
+    "jana_newsletter_6hQgrD": {
       "type": "jana-newsletter",
       "name": "Jana Newsletter",
       "settings": {
+        "overlay_color": "rgba(17,17,17,0.85)",
         "label": "Newsletter",
         "heading": "Stay in the Know",
         "description": "Subscribe for 10% off your first order.",
@@ -236,13 +303,12 @@
   "order": [
     "jana_hero_UqhdUd",
     "jana_marquee_ticker_UCtypj",
-    "jana_trust_bar",
     "jana_featured_asymmetric_hxnGNg",
-    "jana_featured_collection",
-    "jana_countdown",
-    "jana_story",
-    "jana_press",
-    "jana_ugc",
-    "jana_newsletter"
+    "jana_countdown_FJbjpq",
+    "jana_media_with_text_KFydaE",
+    "jana_press_bar_PHXBCG",
+    "jana_press_bar_Yx4WjK",
+    "jana_instagram_ugc_n8k4hG",
+    "jana_newsletter_6hQgrD"
   ]
 }
