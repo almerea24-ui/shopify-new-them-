@@ -1,9 +1,10 @@
-<!-- Jana Marquee Ticker (Black Bar) -->
-<div class="jana-ticker" style="background:{{ section.settings.bg_color }};color:{{ section.settings.text_color }};">
-  <div class="jana-ticker__track">
+<!-- Jana Marquee Ticker - ✦ separator, respects prefers-reduced-motion -->
+<div class="jana-ticker" style="background:{{ section.settings.bg_color | default: '#111111' }};color:{{ section.settings.text_color | default: '#ffffff' }};">
+  <div class="jana-ticker__track" data-jana-ticker>
     {% for i in (1..4) %}
       {% for block in section.blocks %}
-        <span class="jana-ticker__item sans" {{ block.shopify_attributes }}>{{ block.settings.text }} <span class="jana-ticker__dot">.</span></span>
+        <span class="jana-ticker__item sans" {{ block.shopify_attributes }}>{{ block.settings.text }}</span>
+        <span class="jana-ticker__sep">✦</span>
       {% endfor %}
     {% endfor %}
   </div>
@@ -19,17 +20,16 @@
   ],
   "blocks": [
     { "type": "text", "name": "Text", "settings": [
-      { "type": "text", "id": "text", "label": "Text", "default": "Free Shipping Over $150" }
+      { "type": "text", "id": "text", "label": "Text", "default": "New Collection SS25" }
     ]}
   ],
   "presets": [{
     "name": "Jana Ticker",
     "blocks": [
-      { "type": "text", "settings": { "text": "Free Shipping Over $150" } },
       { "type": "text", "settings": { "text": "New Collection SS25" } },
-      { "type": "text", "settings": { "text": "Sustainably Made" } },
-      { "type": "text", "settings": { "text": "Ethically Sourced" } },
-      { "type": "text", "settings": { "text": "Free Returns 30 Days" } }
+      { "type": "text", "settings": { "text": "Free Shipping Over $150" } },
+      { "type": "text", "settings": { "text": "Sustainable Fashion" } },
+      { "type": "text", "settings": { "text": "Free Returns Within 30 Days" } }
     ]
   }]
 }

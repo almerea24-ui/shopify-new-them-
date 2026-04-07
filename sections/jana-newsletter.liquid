@@ -1,25 +1,22 @@
-<!-- Jana Newsletter with Background Image -->
+<!-- Jana Newsletter - Dark bg, inline email + button -->
 <section class="jana-newsletter">
   {% if section.settings.image != blank %}
     <img src="{{ section.settings.image | image_url: width: 1400 }}" alt="" class="jana-newsletter__bg" loading="lazy">
-  {% else %}
-    <div class="jana-newsletter__bg" style="background:#171717;"></div>
   {% endif %}
-  <div class="jana-newsletter__overlay"></div>
+  <div class="jana-newsletter__overlay" style="background:{{ section.settings.overlay_color | default: 'rgba(17,17,17,0.85)' }};"></div>
 
   <div class="jana-newsletter__inner">
     <p class="jana-newsletter__label sans">{{ section.settings.label | default: 'Newsletter' }}</p>
     <h2 class="jana-newsletter__title serif">{{ section.settings.heading | default: 'Stay in the Know' }}</h2>
-    <p class="jana-newsletter__desc sans">{{ section.settings.description | default: 'Subscribe and get 10% off your first order.' }}</p>
+    <p class="jana-newsletter__desc sans">{{ section.settings.description | default: 'Subscribe for 10% off your first order.' }}</p>
 
     {% form 'customer' %}
       <div class="jana-newsletter__form">
-        <input type="email" name="contact[email]" class="jana-newsletter__input sans" placeholder="{{ section.settings.placeholder | default: 'Your email address' }}" required autocomplete="email" style="font-size:16px;">
+        <input type="email" name="contact[email]" class="jana-newsletter__input sans" placeholder="{{ section.settings.placeholder | default: 'Your email address' }}" required autocomplete="email">
         <input type="hidden" name="contact[tags]" value="newsletter">
-        <button type="submit" class="jana-newsletter__submit sans">{{ section.settings.button_text | default: 'Join' }}</button>
+        <button type="submit" class="jana-newsletter__submit sans">{{ section.settings.button_text | default: 'Subscribe' }}</button>
       </div>
     {% endform %}
-
     <p class="jana-newsletter__note sans">{{ section.settings.note | default: 'No spam. Unsubscribe anytime.' }}</p>
   </div>
 </section>
@@ -30,11 +27,12 @@
   "class": "jana-section",
   "settings": [
     { "type": "image_picker", "id": "image", "label": "Background Image" },
+    { "type": "text", "id": "overlay_color", "label": "Overlay Color", "default": "rgba(17,17,17,0.85)" },
     { "type": "text", "id": "label", "label": "Label", "default": "Newsletter" },
     { "type": "text", "id": "heading", "label": "Heading", "default": "Stay in the Know" },
-    { "type": "text", "id": "description", "label": "Description", "default": "Subscribe and get 10% off your first order." },
-    { "type": "text", "id": "placeholder", "label": "Email Placeholder", "default": "Your email address" },
-    { "type": "text", "id": "button_text", "label": "Button Text", "default": "Join" },
+    { "type": "text", "id": "description", "label": "Description", "default": "Subscribe for 10% off your first order." },
+    { "type": "text", "id": "placeholder", "label": "Placeholder", "default": "Your email address" },
+    { "type": "text", "id": "button_text", "label": "Button", "default": "Subscribe" },
     { "type": "text", "id": "note", "label": "Note", "default": "No spam. Unsubscribe anytime." }
   ],
   "presets": [{ "name": "Jana Newsletter" }]

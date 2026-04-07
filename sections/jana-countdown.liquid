@@ -1,7 +1,7 @@
-<!-- Jana Countdown Timer -->
+<!-- Jana Countdown - Live HH:MM:SS, dark bg -->
 <section class="jana-countdown" data-jana-countdown data-hours="{{ section.settings.hours }}">
   <p class="jana-countdown__label sans">{{ section.settings.label | default: 'Limited Time Offer' }}</p>
-  <h3 class="jana-countdown__title serif">{{ section.settings.heading | default: '25% Off The SS25 Edit' }}</h3>
+  <h3 class="jana-countdown__title serif">{{ section.settings.heading | default: 'Sale Ends Tonight' }}</h3>
   {% if section.settings.code != blank %}
     <p class="jana-countdown__code sans">Use code <span>{{ section.settings.code }}</span></p>
   {% endif %}
@@ -32,10 +32,10 @@
   "class": "jana-section",
   "settings": [
     { "type": "text", "id": "label", "label": "Label", "default": "Limited Time Offer" },
-    { "type": "text", "id": "heading", "label": "Heading", "default": "25% Off The SS25 Edit" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Sale Ends Tonight" },
     { "type": "text", "id": "code", "label": "Promo Code", "default": "JANA25" },
-    { "type": "range", "id": "hours", "label": "Countdown Hours", "min": 1, "max": 72, "step": 1, "default": 24 },
-    { "type": "text", "id": "button_text", "label": "Button Text", "default": "Shop the Sale" },
+    { "type": "range", "id": "hours", "label": "Hours", "min": 1, "max": 72, "step": 1, "default": 24 },
+    { "type": "text", "id": "button_text", "label": "Button", "default": "Shop the Sale" },
     { "type": "url", "id": "button_link", "label": "Button Link" }
   ],
   "presets": [{ "name": "Jana Countdown" }]

@@ -1,4 +1,4 @@
-<!-- Jana Trust Bar -->
+<!-- Jana Trust Bar - 4 items, light gray bg -->
 <div class="jana-trust">
   <div class="jana-trust__inner">
     {% for block in section.blocks %}
@@ -20,19 +20,18 @@
   "settings": [],
   "blocks": [
     { "type": "item", "name": "Trust Item", "settings": [
-      { "type": "text", "id": "icon", "label": "Emoji Icon", "default": "🚚" },
+      { "type": "text", "id": "icon", "label": "Icon/Emoji", "default": "🚚" },
       { "type": "text", "id": "title", "label": "Title", "default": "Free Shipping" },
-      { "type": "text", "id": "desc", "label": "Description", "default": "Orders over $150" }
+      { "type": "text", "id": "desc", "label": "Description", "default": "On orders over $150" }
     ]}
   ],
   "presets": [{
     "name": "Jana Trust Bar",
     "blocks": [
-      { "type": "item", "settings": { "icon": "🚚", "title": "Free Shipping", "desc": "Orders over $150" } },
+      { "type": "item", "settings": { "icon": "🚚", "title": "Free Shipping", "desc": "On orders over $150" } },
       { "type": "item", "settings": { "icon": "↩️", "title": "Free Returns", "desc": "Within 30 days" } },
       { "type": "item", "settings": { "icon": "🌿", "title": "Sustainable", "desc": "Ethically sourced" } },
-      { "type": "item", "settings": { "icon": "🔒", "title": "Secure Checkout", "desc": "SSL encrypted" } },
-      { "type": "item", "settings": { "icon": "✨", "title": "Quality Guarantee", "desc": "Premium materials" } }
+      { "type": "item", "settings": { "icon": "🔒", "title": "Secure Checkout", "desc": "256-bit SSL" } }
     ]
   }]
 }

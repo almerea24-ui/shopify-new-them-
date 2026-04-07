@@ -123,7 +123,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .jana-search__tag:hover { background: var(--color-text); color: #fff; border-color: var(--color-text); }
 
 /* HERO SLIDESHOW */
-.jana-hero { position: relative; overflow: hidden; user-select: none; height: 85vh; min-height: 500px; max-height: 900px; }
+.jana-hero { position: relative; overflow: hidden; user-select: none; min-height: 700px; }
 .jana-hero__slide { position: absolute; inset: 0; transition: opacity 0.7s ease; opacity: 0; }
 .jana-hero__slide--active { opacity: 1; }
 .jana-hero__slide img, .jana-hero__slide video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; }
@@ -138,10 +138,11 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 @media(min-width:768px) { .jana-hero__title { font-size: 4.5rem; } }
 @media(min-width:1024px) { .jana-hero__title { font-size: 6rem; } }
 .jana-hero__actions { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
-.jana-hero__btn-primary { display: inline-flex; align-items: center; justify-content: center; background: #fff; color: #171717; font-size: 9px; letter-spacing: 0.25em; text-transform: uppercase; padding: 0.75rem 1.5rem; font-family: var(--font-body); transition: background var(--transition); min-height: 44px; border-radius: var(--radius-theme); text-decoration: none; }
+.jana-hero__body { font-size: 0.875rem; color: rgba(255,255,255,0.7); max-width: 420px; margin-bottom: 1.5rem; line-height: 1.7; font-family: var(--font-body); }
+.jana-hero__btn-primary { display: inline-flex; align-items: center; justify-content: center; background: #fff; color: #171717; font-size: 9px; letter-spacing: 0.25em; text-transform: uppercase; padding: 1rem 2rem; font-family: var(--font-body); transition: background var(--transition); min-height: 48px; border-radius: var(--radius-theme); text-decoration: none; }
 @media(min-width:640px) { .jana-hero__btn-primary { font-size: 10px; padding: 0.75rem 2.5rem; } }
 .jana-hero__btn-primary:hover { background: #F5F5F5; }
-.jana-hero__btn-secondary { color: rgba(255,255,255,0.7); font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; border-bottom: 1px solid rgba(255,255,255,0.3); padding-bottom: 0.125rem; font-family: var(--font-body); transition: all var(--transition); text-decoration: none; }
+.jana-hero__btn-secondary { display: inline-flex; align-items: center; justify-content: center; background: transparent; color: #fff; font-size: 9px; letter-spacing: 0.25em; text-transform: uppercase; padding: 1rem 2rem; border: 1px solid rgba(255,255,255,0.4); font-family: var(--font-body); transition: all var(--transition); min-height: 48px; text-decoration: none; }
 @media(min-width:640px) { .jana-hero__btn-secondary { font-size: 10px; } }
 .jana-hero__btn-secondary:hover { color: #fff; border-color: #fff; }
 .jana-hero__arrow { position: absolute; top: 50%; transform: translateY(-50%); z-index: 20; width: 2.5rem; height: 2.5rem; background: rgba(255,255,255,0.1); backdrop-filter: blur(4px); border-radius: 50%; display: none; align-items: center; justify-content: center; color: #fff; transition: background var(--transition); }
@@ -164,6 +165,9 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 @media(min-width:640px) { .jana-ticker__item { font-size: 10px; letter-spacing: 0.3em; margin: 0 2rem; } }
 .jana-ticker__dot { opacity: 0.4; margin: 0 0.25rem; }
 @media(min-width:640px) { .jana-ticker__dot { margin: 0 0.5rem; } }
+.jana-ticker__sep { opacity: 0.3; margin: 0 1rem; font-size: 8px; flex-shrink: 0; }
+@media(min-width:640px) { .jana-ticker__sep { margin: 0 1.5rem; font-size: 10px; } }
+@media(prefers-reduced-motion: reduce) { .jana-ticker__track { animation: none; } }
 @keyframes jana-marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
 /* TRUST BAR */
@@ -171,7 +175,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .jana-trust::-webkit-scrollbar { display: none; }
 .jana-trust__inner { min-width: max-content; max-width: 80rem; margin: 0 auto; padding: 1rem 1.25rem; display: flex; gap: 1rem; }
 @media(min-width:640px) { .jana-trust__inner { gap: 1.25rem; padding: 1rem 1.5rem; } }
-@media(min-width:768px) { .jana-trust__inner { display: grid; grid-template-columns: repeat(5, 1fr); min-width: 0; } }
+@media(min-width:768px) { .jana-trust__inner { display: grid; grid-template-columns: repeat(4, 1fr); min-width: 0; } }
 .jana-trust__item { display: flex; align-items: center; gap: 0.625rem; flex-shrink: 0; }
 @media(min-width:768px) { .jana-trust__item { flex-shrink: 1; } }
 .jana-trust__icon { font-size: 1.125rem; flex-shrink: 0; }

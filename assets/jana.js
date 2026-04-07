@@ -82,6 +82,8 @@
     else{ searchPanel&&searchPanel.classList.add('jana-search--open'); searchOpen=true; if(searchInput) setTimeout(function(){ searchInput.focus(); },200); }
   }
   searchOpens.forEach(function(btn){ btn.addEventListener('click', toggleSearch); });
+  var searchCloseBtn = document.querySelector('[data-jana-search-close]');
+  if(searchCloseBtn) searchCloseBtn.addEventListener('click', function(){ if(searchOpen) toggleSearch(); });
 
   // --- Cart Drawer ---
   var cartOverlay = document.querySelector('[data-jana-cart-overlay]');
@@ -105,26 +107,27 @@
   var heroEl = document.querySelector('[data-jana-hero]');
   if (heroEl) {
     var slides = heroEl.querySelectorAll('[data-jana-slide]');
+    var textSlides = heroEl.querySelectorAll('[data-jana-hero-text]');
     var dots = heroEl.querySelectorAll('[data-jana-hero-dot]');
     var prevArrow = heroEl.querySelector('[data-jana-hero-prev]');
     var nextArrow = heroEl.querySelector('[data-jana-hero-next]');
-    var heroContent = heroEl.querySelector('[data-jana-hero-content]');
     var heroIdx = 0;
     var heroTotal = slides.length;
     var heroInterval;
 
     function goSlide(i){
-      // Fade out content
-      if(heroContent){ heroContent.style.opacity='0'; }
+      // Fade images
       slides.forEach(function(s){ s.classList.remove('jana-hero__slide--active'); });
-      dots.forEach(function(d){ d.classList.remove('jana-hero__dot--active'); d.style.width='0.5rem'; d.style.opacity='0.4'; });
-
       slides[i] && slides[i].classList.add('jana-hero__slide--active');
+
+      // Switch text content
+      textSlides.forEach(function(t){ t.style.display='none'; });
+      if(textSlides[i]) textSlides[i].style.display='block';
+
+      // Update dots
+      dots.forEach(function(d){ d.classList.remove('jana-hero__dot--active'); d.style.width='0.5rem'; d.style.opacity='0.4'; });
       if(dots[i]){ dots[i].classList.add('jana-hero__dot--active'); dots[i].style.width='1.75rem'; dots[i].style.opacity='1'; }
       heroIdx = i;
-
-      // Fade in content
-      setTimeout(function(){ if(heroContent) heroContent.style.opacity='1'; }, 300);
     }
 
     function nextSlide(){ goSlide((heroIdx+1)%heroTotal); }

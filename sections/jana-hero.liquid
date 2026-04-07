@@ -1,32 +1,35 @@
-<!-- Jana Hero Slideshow -->
-<section class="jana-hero" data-jana-hero style="height:{{ section.settings.height }}vh;">
+<!-- Jana Hero - Full width, min 700px, gradient/image, left-aligned content -->
+<section class="jana-hero" data-jana-hero style="min-height:{{ section.settings.height }}px;">
   <!-- Slides -->
   {% for block in section.blocks %}
     <div class="jana-hero__slide {% if forloop.first %}jana-hero__slide--active{% endif %}" data-jana-slide {{ block.shopify_attributes }}>
       {% if block.settings.image != blank %}
         <img src="{{ block.settings.image | image_url: width: 1920 }}" alt="{{ block.settings.heading | escape }}" loading="{% if forloop.first %}eager{% else %}lazy{% endif %}" fetchpriority="{% if forloop.first %}high{% else %}low{% endif %}">
       {% else %}
-        <div style="position:absolute;inset:0;background:linear-gradient(135deg,#1a1a2e,#16213e,#0f3460);"></div>
+        <div style="position:absolute;inset:0;background:linear-gradient(135deg,#1a1a2e 0%,#16213e 50%,#0f3460 100%);"></div>
       {% endif %}
     </div>
   {% endfor %}
 
-  <!-- Overlay -->
+  <!-- Dark Overlay -->
   <div class="jana-hero__overlay" style="background:rgba(0,0,0,{{ section.settings.overlay_opacity | divided_by: 100.0 }});"></div>
 
-  <!-- Content -->
-  <div class="jana-hero__content" data-jana-hero-content>
+  <!-- Content (left-aligned) -->
+  <div class="jana-hero__content" data-jana-hero-content-wrap>
     {% for block in section.blocks %}
-      {% if forloop.first %}
+      <div class="jana-hero__content-slide" data-jana-hero-text style="{% unless forloop.first %}display:none;{% endunless %}" {{ block.shopify_attributes }}>
         {% if block.settings.label != blank %}
-          <p class="jana-hero__label sans" data-jana-hero-label>{{ block.settings.label }}</p>
+          <p class="jana-hero__label sans">{{ block.settings.label }}</p>
         {% endif %}
-        <h1 class="jana-hero__title serif" data-jana-hero-title>
-          {% assign lines = block.settings.heading | split: '\n' %}
+        <h1 class="jana-hero__title serif">
+          {% assign lines = block.settings.heading | newline_to_br | split: '<br />' %}
           {% for line in lines %}
-            <span style="display:block;">{{ line }}</span>
+            <span style="display:block;">{{ line | strip }}</span>
           {% endfor %}
         </h1>
+        {% if block.settings.body != blank %}
+          <p class="jana-hero__body sans">{{ block.settings.body }}</p>
+        {% endif %}
         <div class="jana-hero__actions">
           {% if block.settings.button_text != blank %}
             <a href="{{ block.settings.button_link | default: '/collections/all' }}" class="jana-hero__btn-primary sans">{{ block.settings.button_text }}</a>
@@ -35,7 +38,7 @@
             <a href="{{ block.settings.secondary_link | default: '/collections/all' }}" class="jana-hero__btn-secondary sans">{{ block.settings.secondary_text }}</a>
           {% endif %}
         </div>
-      {% endif %}
+      </div>
     {% endfor %}
   </div>
 
@@ -47,15 +50,11 @@
     <button class="jana-hero__arrow jana-hero__arrow--next" data-jana-hero-next aria-label="Next">
       <svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg>
     </button>
-
-    <!-- Dots -->
     <div class="jana-hero__dots">
       {% for block in section.blocks %}
         <button class="jana-hero__dot {% if forloop.first %}jana-hero__dot--active{% endif %}" data-jana-hero-dot="{{ forloop.index0 }}" aria-label="Slide {{ forloop.index }}"></button>
       {% endfor %}
     </div>
-
-    <!-- Mobile Swipe Hint -->
     <div class="jana-hero__swipe sans">&mdash; swipe &rarr;</div>
   {% endif %}
 </section>
@@ -65,7 +64,7 @@
   "name": "Jana Hero",
   "class": "jana-section",
   "settings": [
-    { "type": "range", "id": "height", "label": "Height (vh)", "min": 50, "max": 100, "step": 5, "default": 85, "unit": "vh" },
+    { "type": "range", "id": "height", "label": "Min Height (px)", "min": 400, "max": 900, "step": 50, "default": 700, "unit": "px" },
     { "type": "range", "id": "overlay_opacity", "label": "Overlay Opacity", "min": 0, "max": 80, "step": 5, "default": 30, "unit": "%" }
   ],
   "blocks": [
@@ -73,12 +72,13 @@
       "type": "slide",
       "name": "Slide",
       "settings": [
-        { "type": "image_picker", "id": "image", "label": "Image" },
-        { "type": "text", "id": "label", "label": "Label", "default": "Spring / Summer 2025" },
-        { "type": "textarea", "id": "heading", "label": "Heading", "default": "The\nEdit" },
-        { "type": "text", "id": "button_text", "label": "Button Text", "default": "Explore Collection" },
-        { "type": "url", "id": "button_link", "label": "Button Link" },
-        { "type": "text", "id": "secondary_text", "label": "Secondary Link Text", "default": "View All" },
+        { "type": "image_picker", "id": "image", "label": "Background Image" },
+        { "type": "text", "id": "label", "label": "Eyebrow Text", "default": "Spring / Summer 2025" },
+        { "type": "textarea", "id": "heading", "label": "Heading (new line = line break)", "default": "The\nEdit" },
+        { "type": "textarea", "id": "body", "label": "Body Text" },
+        { "type": "text", "id": "button_text", "label": "Primary Button", "default": "Explore Collection" },
+        { "type": "url", "id": "button_link", "label": "Primary Button Link" },
+        { "type": "text", "id": "secondary_text", "label": "Secondary Link", "default": "View All" },
         { "type": "url", "id": "secondary_link", "label": "Secondary Link URL" }
       ]
     }
