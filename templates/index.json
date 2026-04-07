@@ -1,78 +1,108 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
-    "jana_hero": {
+    "jana_hero_UqhdUd": {
       "type": "jana-hero",
       "blocks": {
-        "slide_1": { "type": "slide", "settings": { "label": "Spring / Summer 2025", "heading": "The\nEdit", "body": "Discover our latest collection of thoughtfully designed, sustainably made fashion.", "button_text": "Explore Collection", "secondary_text": "View All" } },
-        "slide_2": { "type": "slide", "settings": { "label": "New Arrivals", "heading": "Effortless\nStyle", "button_text": "Shop New In", "secondary_text": "View All" } },
-        "slide_3": { "type": "slide", "settings": { "label": "Curated Essentials", "heading": "Less\nIs More", "button_text": "Shop Essentials" } }
+        "slide_mBbEfg": {
+          "type": "slide",
+          "settings": {
+            "label": "Spring / Summer 2025",
+            "heading": "The\nEdit",
+            "body": "",
+            "button_text": "Explore Collection",
+            "button_link": "",
+            "secondary_text": "View All",
+            "secondary_link": ""
+          }
+        },
+        "slide_tWzaFV": {
+          "type": "slide",
+          "settings": {
+            "label": "New Arrivals",
+            "heading": "Effortless\nStyle",
+            "body": "",
+            "button_text": "Shop New In",
+            "button_link": "",
+            "secondary_text": "View All",
+            "secondary_link": ""
+          }
+        },
+        "slide_9p6g4J": {
+          "type": "slide",
+          "settings": {
+            "label": "Curated Essentials",
+            "heading": "Less\nIs More",
+            "body": "",
+            "button_text": "Shop Essentials",
+            "button_link": "",
+            "secondary_text": "View All",
+            "secondary_link": ""
+          }
+        }
       },
-      "block_order": ["slide_1", "slide_2", "slide_3"],
-      "settings": { "height": 700, "overlay_opacity": 30 }
-    },
-    "jana_ticker": {
-      "type": "jana-marquee-ticker",
-      "blocks": {
-        "t1": { "type": "text", "settings": { "text": "New Collection SS25" } },
-        "t2": { "type": "text", "settings": { "text": "Free Shipping Over $150" } },
-        "t3": { "type": "text", "settings": { "text": "Sustainable Fashion" } },
-        "t4": { "type": "text", "settings": { "text": "Free Returns Within 30 Days" } }
-      },
-      "block_order": ["t1", "t2", "t3", "t4"],
-      "settings": {}
-    },
-    "jana_trust": {
-      "type": "jana-trust-bar",
-      "blocks": {
-        "i1": { "type": "item", "settings": { "icon": "🚚", "title": "Free Shipping", "desc": "On orders over $150" } },
-        "i2": { "type": "item", "settings": { "icon": "↩️", "title": "Free Returns", "desc": "Within 30 days" } },
-        "i3": { "type": "item", "settings": { "icon": "🌿", "title": "Sustainable", "desc": "Ethically sourced" } },
-        "i4": { "type": "item", "settings": { "icon": "🔒", "title": "Secure Checkout", "desc": "256-bit SSL" } }
-      },
-      "block_order": ["i1", "i2", "i3", "i4"],
-      "settings": {}
-    },
-    "jana_products": {
-      "type": "jana-featured-collection",
-      "settings": { "heading": "Featured Collection", "max_products": 8, "columns_desktop": 4, "columns_mobile": 2, "link_text": "View All" }
-    },
-    "jana_countdown": {
-      "type": "jana-countdown",
-      "settings": { "label": "Limited Time Offer", "heading": "Sale Ends Tonight", "code": "JANA25", "hours": 24, "button_text": "Shop the Sale" }
-    },
-    "jana_story": {
-      "type": "jana-media-with-text",
+      "block_order": [
+        "slide_mBbEfg",
+        "slide_tWzaFV",
+        "slide_9p6g4J"
+      ],
+      "name": "Jana Hero",
       "settings": {
-        "tag": "Est. 2019",
-        "label": "Our Story",
-        "heading": "Dressed in Silence",
-        "text_1": "We believe that true elegance lies in simplicity. Each piece in our collection is thoughtfully designed to transcend seasons and trends.",
-        "text_2": "Our commitment to sustainable practices means every garment is crafted with care for both the wearer and the world.",
-        "stat_1_value": "10+", "stat_1_label": "Years",
-        "stat_2_value": "50K+", "stat_2_label": "Customers",
-        "stat_3_value": "120+", "stat_3_label": "Countries",
-        "cta_text": "About Us"
+        "height": 700,
+        "overlay_opacity": 30
       }
     },
-    "jana_newsletter": {
-      "type": "jana-newsletter",
+    "jana_marquee_ticker_UCtypj": {
+      "type": "jana-marquee-ticker",
+      "blocks": {
+        "text_cXbgwr": {
+          "type": "text",
+          "settings": {
+            "text": "New Collection SS25"
+          }
+        },
+        "text_MW4eNF": {
+          "type": "text",
+          "settings": {
+            "text": "Free Shipping Over $150"
+          }
+        },
+        "text_DDGhXc": {
+          "type": "text",
+          "settings": {
+            "text": "Sustainable Fashion"
+          }
+        },
+        "text_dALaKR": {
+          "type": "text",
+          "settings": {
+            "text": "Free Returns Within 30 Days"
+          }
+        }
+      },
+      "block_order": [
+        "text_cXbgwr",
+        "text_MW4eNF",
+        "text_DDGhXc",
+        "text_dALaKR"
+      ],
+      "name": "Jana Ticker",
       "settings": {
-        "label": "Newsletter",
-        "heading": "Stay in the Know",
-        "description": "Subscribe for 10% off your first order.",
-        "placeholder": "Your email address",
-        "button_text": "Subscribe",
-        "note": "No spam. Unsubscribe anytime."
+        "bg_color": "#111111",
+        "text_color": "#ffffff"
       }
     }
   },
   "order": [
-    "jana_hero",
-    "jana_ticker",
-    "jana_trust",
-    "jana_products",
-    "jana_countdown",
-    "jana_story",
-    "jana_newsletter"
+    "jana_hero_UqhdUd",
+    "jana_marquee_ticker_UCtypj"
   ]
 }
