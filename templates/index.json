@@ -17,7 +17,7 @@
           "settings": {
             "label": "Spring / Summer 2025",
             "heading": "The\nEdit",
-            "body": "",
+            "body": "Discover our latest collection of thoughtfully designed, sustainably made fashion.",
             "button_text": "Explore Collection",
             "button_link": "",
             "secondary_text": "View All",
@@ -100,6 +100,46 @@
         "text_color": "#ffffff"
       }
     },
+    "jana_trust_bar": {
+      "type": "jana-trust-bar",
+      "blocks": {
+        "trust_1": {
+          "type": "item",
+          "settings": {
+            "icon": "🚚",
+            "title": "Free Shipping",
+            "desc": "On orders over $150"
+          }
+        },
+        "trust_2": {
+          "type": "item",
+          "settings": {
+            "icon": "↩️",
+            "title": "Free Returns",
+            "desc": "Within 30 days"
+          }
+        },
+        "trust_3": {
+          "type": "item",
+          "settings": {
+            "icon": "🌿",
+            "title": "Sustainable",
+            "desc": "Ethically sourced"
+          }
+        },
+        "trust_4": {
+          "type": "item",
+          "settings": {
+            "icon": "🔒",
+            "title": "Secure Checkout",
+            "desc": "256-bit SSL"
+          }
+        }
+      },
+      "block_order": ["trust_1", "trust_2", "trust_3", "trust_4"],
+      "name": "Jana Trust Bar",
+      "settings": {}
+    },
     "jana_featured_asymmetric_hxnGNg": {
       "type": "jana-featured-asymmetric",
       "name": "Jana Featured Edit",
@@ -108,11 +148,82 @@
         "heading": "The Edit",
         "collection": ""
       }
+    },
+    "jana_featured_collection": {
+      "type": "jana-featured-collection",
+      "name": "Featured Collection",
+      "settings": {
+        "heading": "New Arrivals",
+        "max_products": 8,
+        "columns_desktop": 4,
+        "columns_mobile": 2,
+        "link_text": "View All"
+      }
+    },
+    "jana_countdown": {
+      "type": "jana-countdown",
+      "name": "Jana Countdown",
+      "settings": {
+        "label": "Limited Time Offer",
+        "heading": "Sale Ends Tonight",
+        "code": "JANA25",
+        "hours": 24,
+        "button_text": "Shop the Sale"
+      }
+    },
+    "jana_story": {
+      "type": "jana-media-with-text",
+      "name": "Jana Brand Story",
+      "settings": {
+        "tag": "Est. 2019",
+        "label": "Our Story",
+        "heading": "Dressed in Silence",
+        "text_1": "We believe that true elegance lies in simplicity. Each piece in our collection is thoughtfully designed to transcend seasons and trends.",
+        "text_2": "Our commitment to sustainable practices means every garment is crafted with care for both the wearer and the world.",
+        "stat_1_value": "10+",
+        "stat_1_label": "Years",
+        "stat_2_value": "50K+",
+        "stat_2_label": "Customers",
+        "stat_3_value": "120+",
+        "stat_3_label": "Countries",
+        "cta_text": "About Us"
+      }
+    },
+    "jana_press": {
+      "type": "jana-press-bar",
+      "blocks": {
+        "pr1": { "type": "press", "settings": { "name": "Vogue", "quote": "Effortless luxury at its finest." } },
+        "pr2": { "type": "press", "settings": { "name": "Elle", "quote": "A new standard in minimal fashion." } },
+        "pr3": { "type": "press", "settings": { "name": "Harper's Bazaar", "quote": "Simply beautiful." } },
+        "pr4": { "type": "press", "settings": { "name": "The Independent", "quote": "Fashion with conscience." } },
+        "pr5": { "type": "press", "settings": { "name": "Refinery29", "quote": "Clean lines, clear purpose." } }
+      },
+      "block_order": ["pr1", "pr2", "pr3", "pr4", "pr5"],
+      "name": "Jana Press Bar",
+      "settings": {}
+    },
+    "jana_newsletter": {
+      "type": "jana-newsletter",
+      "name": "Jana Newsletter",
+      "settings": {
+        "label": "Newsletter",
+        "heading": "Stay in the Know",
+        "description": "Subscribe for 10% off your first order.",
+        "placeholder": "Your email address",
+        "button_text": "Subscribe",
+        "note": "No spam. Unsubscribe anytime."
+      }
     }
   },
   "order": [
     "jana_hero_UqhdUd",
     "jana_marquee_ticker_UCtypj",
-    "jana_featured_asymmetric_hxnGNg"
+    "jana_trust_bar",
+    "jana_featured_asymmetric_hxnGNg",
+    "jana_featured_collection",
+    "jana_countdown",
+    "jana_story",
+    "jana_press",
+    "jana_newsletter"
   ]
 }
