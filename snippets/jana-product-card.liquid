@@ -117,7 +117,7 @@
             {%- when 'olive' -%}{%- assign hex = '#6b7c3e' -%}
             {%- when 'khaki' -%}{%- assign hex = '#c3b091' -%}
             {%- when 'camel' -%}{%- assign hex = '#c19a6b' -%}
-            {%- else -%}{%- assign hex = swatch_color -%}
+            {%- else -%}{%- assign hex = '#cccccc' -%}
           {%- endcase -%}
           <span class="jana-card__swatch {% if forloop.first %}jana-card__swatch--active{% endif %}" style="background-color:{{ hex }};" title="{{ value }}"></span>
         {% endfor %}

@@ -1,44 +1,43 @@
-<!-- Jana Featured Collection -->
-<section class="jana-section jana-featured-collection jana-reveal">
+<!-- Jana Featured Collection - Fixed all class names -->
+<section class="reveal" style="padding:4rem 0;">
   <div class="jana-container">
     <!-- Section Header -->
-    <div class="jana-section-header">
-      <h2 class="jana-section-header__title jana-serif">
-        {% if section.settings.heading != blank %}
-          {{ section.settings.heading }}
-        {% elsif section.settings.collection != blank %}
-          {{ section.settings.collection.title }}
-        {% else %}
-          Featured Products
-        {% endif %}
-      </h2>
+    <div class="jana-section-head">
+      <div>
+        <p class="jana-section-head__label sans">Collection</p>
+        <h2 class="jana-section-head__title serif">
+          {% if section.settings.heading != blank %}
+            {{ section.settings.heading }}
+          {% elsif section.settings.collection != blank %}
+            {{ section.settings.collection.title }}
+          {% else %}
+            Featured Products
+          {% endif %}
+        </h2>
+      </div>
       {% if section.settings.collection != blank %}
-        <a href="{{ section.settings.collection.url }}" class="jana-section-header__link">
-          {{ section.settings.link_text | default: 'View All' }}
-          &rarr;
+        <a href="{{ section.settings.collection.url }}" class="jana-section-head__link sans">
+          {{ section.settings.link_text | default: 'View All' }} <span></span>
         </a>
       {% endif %}
     </div>
 
     <!-- Product Grid -->
-    <div class="jana-product-grid" style="
-      --columns-desktop: {{ section.settings.columns_desktop }};
-      --columns-mobile: {{ section.settings.columns_mobile }};
-    ">
+    <div class="jana-grid jana-grid--gap-y">
       {% if section.settings.collection != blank %}
         {% for product in section.settings.collection.products limit: section.settings.max_products %}
           {% render 'jana-product-card', product: product, index: forloop.index %}
         {% endfor %}
       {% else %}
         {% for i in (1..section.settings.max_products) %}
-          <div class="jana-product-card jana-card-animate jana-stagger-{{ i }}">
-            <div class="jana-product-card__media">
+          <div class="jana-card card-animate stagger-{{ i }}">
+            <div class="jana-card__media">
               {{ 'product-' | append: i | placeholder_svg_tag: 'placeholder-svg' }}
             </div>
-            <div class="jana-product-card__info">
-              <span class="jana-product-card__vendor">Brand Name</span>
-              <h3 class="jana-product-card__title"><a href="#">Sample Product {{ i }}</a></h3>
-              <div class="jana-product-card__price"><span>$99.00</span></div>
+            <div class="jana-card__info">
+              <p class="jana-card__category sans">Brand Name</p>
+              <span class="jana-card__title">Sample Product {{ i }}</span>
+              <div class="jana-card__price"><span class="jana-card__price-current">$99.00</span></div>
             </div>
           </div>
         {% endfor %}
@@ -50,63 +49,15 @@
 {% schema %}
 {
   "name": "Jana Featured Collection",
-  "class": "jana-featured-collection-section",
+  "class": "jana-section",
   "settings": [
-    {
-      "type": "text",
-      "id": "heading",
-      "label": "Heading",
-      "default": ""
-    },
-    {
-      "type": "collection",
-      "id": "collection",
-      "label": "Collection"
-    },
-    {
-      "type": "range",
-      "id": "max_products",
-      "label": "Max Products",
-      "min": 2,
-      "max": 12,
-      "step": 1,
-      "default": 8
-    },
-    {
-      "type": "range",
-      "id": "columns_desktop",
-      "label": "Columns (Desktop)",
-      "min": 2,
-      "max": 5,
-      "step": 1,
-      "default": 4
-    },
-    {
-      "type": "range",
-      "id": "columns_mobile",
-      "label": "Columns (Mobile)",
-      "min": 1,
-      "max": 3,
-      "step": 1,
-      "default": 2
-    },
-    {
-      "type": "text",
-      "id": "link_text",
-      "label": "Link Text",
-      "default": "View All"
-    }
+    { "type": "text", "id": "heading", "label": "Heading", "default": "" },
+    { "type": "collection", "id": "collection", "label": "Collection" },
+    { "type": "range", "id": "max_products", "label": "Max Products", "min": 2, "max": 12, "step": 1, "default": 8 },
+    { "type": "range", "id": "columns_desktop", "label": "Columns (Desktop)", "min": 2, "max": 5, "step": 1, "default": 4 },
+    { "type": "range", "id": "columns_mobile", "label": "Columns (Mobile)", "min": 1, "max": 3, "step": 1, "default": 2 },
+    { "type": "text", "id": "link_text", "label": "Link Text", "default": "View All" }
   ],
-  "presets": [
-    {
-      "name": "Jana Featured Collection",
-      "settings": {
-        "max_products": 8,
-        "columns_desktop": 4,
-        "columns_mobile": 2,
-        "link_text": "View All"
-      }
-    }
-  ]
+  "presets": [{ "name": "Jana Featured Collection" }]
 }
 {% endschema %}

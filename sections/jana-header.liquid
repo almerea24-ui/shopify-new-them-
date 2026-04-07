@@ -32,19 +32,19 @@
     <div class="jana-header__actions">
       <!-- Search -->
       <button class="jana-header__icon-btn" data-jana-search-open aria-label="Search">
-        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <svg viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
       </button>
       <!-- Wishlist (desktop only) -->
       <a href="/pages/wishlist" class="jana-header__icon-btn jana-header__desktop-only" aria-label="Wishlist">
-        <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        <svg viewBox="0 0 24 24" fill="none"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
       </a>
       <!-- Account (desktop only) -->
       <a href="{{ routes.account_url }}" class="jana-header__icon-btn jana-header__desktop-only" aria-label="Account">
-        <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M20 21a8 8 0 1 0-16 0"/></svg>
+        <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4"/><path d="M20 21a8 8 0 1 0-16 0"/></svg>
       </a>
       <!-- Cart -->
       <button class="jana-header__icon-btn" data-jana-cart-open aria-label="Cart">
-        <svg viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <svg viewBox="0 0 24 24" fill="none"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
         <span class="jana-header__badge jana-header__badge--cart" data-jana-cart-count style="{% if cart.item_count == 0 %}display:none{% endif %}">{{ cart.item_count }}</span>
       </button>
     </div>

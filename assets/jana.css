@@ -36,7 +36,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 
 /* ANNOUNCEMENT BAR */
 .jana-announce { background: #111; color: #fff; padding: 0.625rem 1rem; text-align: center; position: relative; overflow: hidden; }
-.jana-announce__text { font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase; line-height: 1.6; font-family: var(--font-body); transition: opacity 0.3s; padding: 0 2rem; }
+.jana-announce__text { font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase; line-height: 1.6; font-family: var(--font-body); transition: opacity 0.3s; padding: 0 2rem; margin: 0; }
 @media(min-width:640px) { .jana-announce__text { font-size: 10px; } }
 .jana-announce__arrow { position: absolute; top: 50%; transform: translateY(-50%); width: 1.5rem; height: 1.5rem; display: flex; align-items: center; justify-content: center; opacity: 0.4; font-size: 1rem; font-family: var(--font-body); transition: opacity var(--transition); color: #fff; }
 .jana-announce__arrow:hover { opacity: 1; }

@@ -202,6 +202,24 @@
       "name": "Jana Press Bar",
       "settings": {}
     },
+    "jana_ugc": {
+      "type": "jana-instagram-ugc",
+      "blocks": {
+        "p1": { "type": "photo" },
+        "p2": { "type": "photo" },
+        "p3": { "type": "photo" },
+        "p4": { "type": "photo" },
+        "p5": { "type": "photo" },
+        "p6": { "type": "photo" }
+      },
+      "block_order": ["p1", "p2", "p3", "p4", "p5", "p6"],
+      "name": "Jana Instagram",
+      "settings": {
+        "label": "Community",
+        "heading": "#WearingJana",
+        "subtitle": "Tag us on Instagram to be featured"
+      }
+    },
     "jana_newsletter": {
       "type": "jana-newsletter",
       "name": "Jana Newsletter",
@@ -224,6 +242,7 @@
     "jana_countdown",
     "jana_story",
     "jana_press",
+    "jana_ugc",
     "jana_newsletter"
   ]
 }
