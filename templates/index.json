@@ -100,6 +100,51 @@
         "text_color": "#ffffff"
       }
     },
+    "jana_trust_bar_zqb6Jr": {
+      "type": "jana-trust-bar",
+      "blocks": {
+        "item_kenHQm": {
+          "type": "item",
+          "settings": {
+            "icon": "🚚",
+            "title": "Free Shipping",
+            "desc": "On orders over $150"
+          }
+        },
+        "item_dUeBHK": {
+          "type": "item",
+          "settings": {
+            "icon": "↩️",
+            "title": "Free Returns",
+            "desc": "Within 30 days"
+          }
+        },
+        "item_c6iLtH": {
+          "type": "item",
+          "settings": {
+            "icon": "🌿",
+            "title": "Sustainable",
+            "desc": "Ethically sourced"
+          }
+        },
+        "item_c7ge9M": {
+          "type": "item",
+          "settings": {
+            "icon": "🔒",
+            "title": "Secure Checkout",
+            "desc": "256-bit SSL"
+          }
+        }
+      },
+      "block_order": [
+        "item_kenHQm",
+        "item_dUeBHK",
+        "item_c6iLtH",
+        "item_c7ge9M"
+      ],
+      "name": "Jana Trust Bar",
+      "settings": {}
+    },
     "jana_featured_asymmetric_hxnGNg": {
       "type": "jana-featured-asymmetric",
       "name": "Jana Featured Edit",
@@ -298,11 +343,22 @@
         "button_text": "Subscribe",
         "note": "No spam. Unsubscribe anytime."
       }
+    },
+    "jana_featured_asymmetric_hhqVVL": {
+      "type": "jana-featured-asymmetric",
+      "name": "Jana Featured Edit",
+      "settings": {
+        "label": "Curated Selection",
+        "heading": "The Edit",
+        "collection": ""
+      }
     }
   },
   "order": [
     "jana_hero_UqhdUd",
     "jana_marquee_ticker_UCtypj",
+    "jana_trust_bar_zqb6Jr",
+    "jana_featured_asymmetric_hhqVVL",
     "jana_featured_asymmetric_hxnGNg",
     "jana_countdown_FJbjpq",
     "jana_media_with_text_KFydaE",
