@@ -32,6 +32,11 @@
     {%- render 'theme-styles-variables' -%}
     {%- render 'color-schemes' -%}
 
+    <!-- Jana Theme Assets -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Cairo:wght@300;400;500&family=Inter:wght@300;400&family=DM+Sans:wght@300;400&family=DM+Serif+Display:ital@0;1&display=swap">
+    {{ 'jana.css' | asset_url | stylesheet_tag }}
+
     {% if request.design_mode %}
       {%- render 'theme-editor' -%}
     {% endif %}
@@ -134,5 +139,22 @@
     {% if settings.quick_add or settings.mobile_quick_add %}
       {% render 'quick-add-modal' %}
     {% endif %}
+
+    <!-- Jana Cart Drawer -->
+    {% render 'jana-cart-drawer' %}
+
+    <!-- Jana Mobile Bottom Nav -->
+    {% render 'jana-mobile-nav' %}
+
+    <!-- Jana Back to Top -->
+    <button class="jana-back-to-top" data-jana-back-to-top aria-label="Back to top">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+        <line x1="12" y1="19" x2="12" y2="5" stroke="currentColor" stroke-width="1.5"></line>
+        <polyline points="5 12 12 5 19 12" stroke="currentColor" stroke-width="1.5" fill="none"></polyline>
+      </svg>
+    </button>
+
+    <!-- Jana JavaScript -->
+    <script src="{{ 'jana.js' | asset_url }}" defer></script>
   </body>
 </html>

@@ -1,0 +1,188 @@
+<!-- Jana Footer -->
+<footer class="jana-section jana-footer">
+  <div class="jana-container">
+    <div class="jana-footer__grid">
+      <!-- Brand Column -->
+      <div>
+        <div class="jana-footer__brand-name jana-serif">{{ section.settings.brand_name | default: shop.name }}</div>
+        <p class="jana-footer__brand-text">{{ section.settings.brand_description | default: 'Premium minimal fashion. Thoughtfully designed, sustainably made.' }}</p>
+
+        <!-- Social Icons -->
+        <div class="jana-footer__social">
+          {% if section.settings.social_instagram != blank %}
+            <a href="{{ section.settings.social_instagram }}" class="jana-footer__social-icon" aria-label="Instagram" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="5" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+            </a>
+          {% endif %}
+          {% if section.settings.social_tiktok != blank %}
+            <a href="{{ section.settings.social_tiktok }}" class="jana-footer__social-icon" aria-label="TikTok" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 00-.79-.05A6.34 6.34 0 003.15 15.2a6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.34-6.34V8.88a8.2 8.2 0 004.76 1.52V7a4.84 4.84 0 01-1-.31z"/></svg>
+            </a>
+          {% endif %}
+          {% if section.settings.social_twitter != blank %}
+            <a href="{{ section.settings.social_twitter }}" class="jana-footer__social-icon" aria-label="Twitter" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+          {% endif %}
+        </div>
+      </div>
+
+      <!-- Menu Columns -->
+      {% for block in section.blocks %}
+        <div {{ block.shopify_attributes }}>
+          {% if block.type == 'menu' %}
+            <h4 class="jana-footer__heading">{{ block.settings.heading }}</h4>
+            {% if block.settings.menu != blank %}
+              {% for link in block.settings.menu.links %}
+                <a href="{{ link.url }}" class="jana-footer__link">{{ link.title }}</a>
+              {% endfor %}
+            {% endif %}
+          {% elsif block.type == 'text' %}
+            <h4 class="jana-footer__heading">{{ block.settings.heading }}</h4>
+            <p class="jana-footer__brand-text">{{ block.settings.text }}</p>
+          {% elsif block.type == 'newsletter' %}
+            <h4 class="jana-footer__heading">{{ block.settings.heading | default: 'Newsletter' }}</h4>
+            <p class="jana-footer__brand-text" style="margin-bottom: 1rem;">{{ block.settings.text | default: 'Get exclusive offers and updates.' }}</p>
+            {% form 'customer', class: 'jana-newsletter__form' %}
+              <input
+                type="email"
+                name="contact[email]"
+                class="jana-newsletter__input"
+                placeholder="{{ block.settings.placeholder | default: 'Your email' }}"
+                required
+                style="color: #fff;"
+              >
+              <input type="hidden" name="contact[tags]" value="newsletter">
+              <button type="submit" class="jana-newsletter__submit" style="background: #fff; color: #111;">
+                {{ block.settings.button_text | default: 'Subscribe' }}
+              </button>
+            {% endform %}
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="jana-footer__bottom">
+      <p class="jana-footer__copyright">
+        &copy; {{ 'now' | date: '%Y' }} {{ shop.name }}. All rights reserved.
+      </p>
+      <div class="jana-footer__payments">
+        {{ shop.enabled_payment_types | payment_type_svg_tag }}
+      </div>
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Jana Footer",
+  "class": "jana-footer-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "brand_name",
+      "label": "Brand Name",
+      "default": "JANA"
+    },
+    {
+      "type": "textarea",
+      "id": "brand_description",
+      "label": "Brand Description",
+      "default": "Premium minimal fashion. Thoughtfully designed, sustainably made."
+    },
+    {
+      "type": "url",
+      "id": "social_instagram",
+      "label": "Instagram URL"
+    },
+    {
+      "type": "url",
+      "id": "social_tiktok",
+      "label": "TikTok URL"
+    },
+    {
+      "type": "url",
+      "id": "social_twitter",
+      "label": "Twitter/X URL"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "menu",
+      "name": "Menu Column",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Shop"
+        },
+        {
+          "type": "link_list",
+          "id": "menu",
+          "label": "Menu"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "name": "Text Column",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "About"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Text"
+        }
+      ]
+    },
+    {
+      "type": "newsletter",
+      "name": "Newsletter",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Newsletter"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Description",
+          "default": "Get exclusive offers and updates."
+        },
+        {
+          "type": "text",
+          "id": "placeholder",
+          "label": "Email Placeholder",
+          "default": "Your email"
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button Text",
+          "default": "Subscribe"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Jana Footer",
+      "blocks": [
+        { "type": "menu", "settings": { "heading": "Shop" } },
+        { "type": "menu", "settings": { "heading": "Help" } },
+        { "type": "newsletter", "settings": { "heading": "Newsletter" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

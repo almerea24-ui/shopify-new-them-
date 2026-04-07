@@ -1,0 +1,55 @@
+{%- comment -%}
+  Jana Mobile Bottom Navigation
+  Render in theme.liquid: {% render 'jana-mobile-nav' %}
+{%- endcomment -%}
+
+<nav class="jana-mobile-nav" aria-label="Mobile navigation">
+  <!-- Home -->
+  <a href="/" class="jana-mobile-nav__item {% if request.path == '/' %}active{% endif %}">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+      <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+      <polyline points="9 22 9 12 15 12 15 22"></polyline>
+    </svg>
+    <span>Home</span>
+  </a>
+
+  <!-- Shop -->
+  <a href="/collections/all" class="jana-mobile-nav__item {% if request.path contains '/collections' %}active{% endif %}">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="3" width="7" height="7"></rect>
+      <rect x="14" y="3" width="7" height="7"></rect>
+      <rect x="14" y="14" width="7" height="7"></rect>
+      <rect x="3" y="14" width="7" height="7"></rect>
+    </svg>
+    <span>Shop</span>
+  </a>
+
+  <!-- Search -->
+  <button class="jana-mobile-nav__item" data-jana-search-toggle>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+      <circle cx="11" cy="11" r="8"></circle>
+      <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+    </svg>
+    <span>Search</span>
+  </button>
+
+  <!-- Account -->
+  <a href="{{ routes.account_url }}" class="jana-mobile-nav__item">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+      <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+      <circle cx="12" cy="7" r="4"></circle>
+    </svg>
+    <span>Account</span>
+  </a>
+
+  <!-- Cart -->
+  <button class="jana-mobile-nav__item" data-jana-cart-toggle style="position:relative;">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+      <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <path d="M16 10a4 4 0 0 1-8 0"></path>
+    </svg>
+    <span>Cart</span>
+    <span class="jana-header__cart-count" data-jana-cart-count style="display:none; top:-2px; right:50%; transform:translateX(12px);">0</span>
+  </button>
+</nav>

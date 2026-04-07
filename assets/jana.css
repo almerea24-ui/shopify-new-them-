@@ -1,0 +1,1711 @@
+/* ============================================
+   JANA — Minimal Fashion Theme CSS
+   ============================================ */
+
+/* --- CSS Variables / Design Tokens --- */
+:root {
+  --jana-primary: #111111;
+  --jana-secondary: #6b7280;
+  --jana-bg: #ffffff;
+  --jana-text: #111111;
+  --jana-border: #e5e5e5;
+  --jana-border-light: #f5f5f5;
+  --jana-muted: #737373;
+  --jana-accent: #b8860b;
+  --jana-error: #dc2626;
+  --jana-success: #16a34a;
+  --jana-radius: 0px;
+  --jana-font-body: 'Inter', 'DM Sans', system-ui, -apple-system, sans-serif;
+  --jana-font-heading: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
+  --jana-font-accent: 'DM Serif Display', Georgia, serif;
+  --jana-font-arabic: 'Cairo', system-ui, sans-serif;
+  --jana-transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --jana-header-height: 60px;
+  --jana-announcement-height: 36px;
+}
+
+/* --- Base Reset for Jana sections --- */
+.jana-section * {
+  box-sizing: border-box;
+}
+
+.jana-section img {
+  max-width: 100%;
+  display: block;
+}
+
+.jana-section a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.jana-section button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: inherit;
+}
+
+/* --- Typography --- */
+.jana-heading {
+  font-family: var(--jana-font-heading);
+  font-weight: 300;
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+  color: var(--jana-text);
+}
+
+.jana-heading-xl {
+  font-size: clamp(2.5rem, 8vw, 5rem);
+}
+
+.jana-heading-lg {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+}
+
+.jana-heading-md {
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+}
+
+.jana-heading-sm {
+  font-size: clamp(1.125rem, 2vw, 1.5rem);
+}
+
+.jana-body {
+  font-family: var(--jana-font-body);
+  font-weight: 300;
+  line-height: 1.6;
+  color: var(--jana-text);
+  letter-spacing: 0.02em;
+}
+
+.jana-label {
+  font-family: var(--jana-font-body);
+  font-size: 0.6875rem;
+  font-weight: 400;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--jana-muted);
+}
+
+.jana-serif {
+  font-family: var(--jana-font-heading) !important;
+}
+
+.jana-italic {
+  font-style: italic;
+}
+
+/* RTL Arabic font override */
+[dir="rtl"] .jana-heading,
+[dir="rtl"] .jana-serif {
+  font-family: var(--jana-font-arabic) !important;
+  font-weight: 300 !important;
+}
+
+[dir="rtl"] .jana-body,
+[dir="rtl"] .jana-label {
+  font-family: var(--jana-font-arabic) !important;
+}
+
+/* --- Layout --- */
+.jana-container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+
+@media (min-width: 768px) {
+  .jana-container {
+    padding: 0 2.5rem;
+  }
+}
+
+/* ============================================
+   ANNOUNCEMENT BAR
+   ============================================ */
+.jana-announcement {
+  background: var(--jana-primary);
+  color: #fff;
+  height: var(--jana-announcement-height);
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+  z-index: 50;
+}
+
+.jana-announcement__track {
+  display: flex;
+  animation: jana-marquee 30s linear infinite;
+  white-space: nowrap;
+}
+
+.jana-announcement__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 2rem;
+  padding: 0 2rem;
+  font-family: var(--jana-font-body);
+  font-size: 0.6875rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 300;
+}
+
+.jana-announcement__item span {
+  opacity: 0.4;
+  font-size: 0.5rem;
+}
+
+@keyframes jana-marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ============================================
+   HEADER
+   ============================================ */
+.jana-header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background: var(--jana-bg);
+  border-bottom: 1px solid var(--jana-border-light);
+  transition: transform var(--jana-transition), background var(--jana-transition);
+}
+
+.jana-header--hidden {
+  transform: translateY(-100%);
+}
+
+.jana-header--transparent {
+  background: transparent;
+  border-bottom-color: transparent;
+}
+
+.jana-header--transparent .jana-header__logo,
+.jana-header--transparent .jana-header__nav-link,
+.jana-header--transparent .jana-header__icon {
+  color: #fff;
+}
+
+.jana-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--jana-header-height);
+  padding: 0 1.25rem;
+}
+
+@media (min-width: 768px) {
+  .jana-header__inner {
+    padding: 0 2.5rem;
+  }
+}
+
+/* Header Left - Menu button (mobile) + Nav (desktop) */
+.jana-header__left {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex: 1;
+}
+
+.jana-header__menu-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+}
+
+@media (min-width: 990px) {
+  .jana-header__menu-btn {
+    display: none;
+  }
+}
+
+.jana-header__menu-btn svg {
+  width: 1.25rem;
+  height: 1.25rem;
+  stroke: currentColor;
+  stroke-width: 1.5;
+}
+
+/* Desktop Navigation */
+.jana-header__nav {
+  display: none;
+  align-items: center;
+  gap: 2rem;
+}
+
+@media (min-width: 990px) {
+  .jana-header__nav {
+    display: flex;
+  }
+}
+
+.jana-header__nav-link {
+  font-family: var(--jana-font-body);
+  font-size: 0.6875rem;
+  font-weight: 400;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--jana-text);
+  transition: opacity var(--jana-transition);
+  padding: 0.5rem 0;
+  position: relative;
+}
+
+.jana-header__nav-link:hover {
+  opacity: 0.6;
+}
+
+.jana-header__nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: currentColor;
+  transition: width var(--jana-transition);
+}
+
+.jana-header__nav-link:hover::after {
+  width: 100%;
+}
+
+/* Header Center - Logo */
+.jana-header__center {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.jana-header__logo {
+  font-family: var(--jana-font-heading);
+  font-size: 1.75rem;
+  font-weight: 300;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--jana-text);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.jana-header__logo-img {
+  height: 36px;
+  width: auto;
+}
+
+@media (max-width: 767px) {
+  .jana-header__logo {
+    font-size: 1.375rem;
+  }
+  .jana-header__logo-img {
+    height: 28px;
+  }
+}
+
+/* Header Right - Actions */
+.jana-header__right {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  flex: 1;
+  justify-content: flex-end;
+}
+
+.jana-header__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  color: var(--jana-text);
+  transition: opacity var(--jana-transition);
+  position: relative;
+  padding: 0;
+}
+
+.jana-header__icon:hover {
+  opacity: 0.6;
+}
+
+.jana-header__icon svg {
+  width: 1.25rem;
+  height: 1.25rem;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  fill: none;
+}
+
+.jana-header__cart-count {
+  position: absolute;
+  top: 0.25rem;
+  right: 0;
+  background: var(--jana-primary);
+  color: #fff;
+  font-size: 0.5625rem;
+  font-weight: 500;
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+/* ============================================
+   MOBILE DRAWER MENU
+   ============================================ */
+.jana-drawer-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 60;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--jana-transition), visibility var(--jana-transition);
+}
+
+.jana-drawer-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.jana-drawer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  max-width: 380px;
+  height: 100%;
+  background: var(--jana-bg);
+  z-index: 70;
+  transform: translateX(-100%);
+  transition: transform var(--jana-transition);
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+[dir="rtl"] .jana-drawer {
+  left: auto;
+  right: 0;
+  transform: translateX(100%);
+}
+
+.jana-drawer.active {
+  transform: translateX(0);
+}
+
+.jana-drawer__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem;
+  border-bottom: 1px solid var(--jana-border-light);
+}
+
+.jana-drawer__close {
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.jana-drawer__close svg {
+  width: 1.25rem;
+  height: 1.25rem;
+  stroke: currentColor;
+  stroke-width: 1.5;
+}
+
+.jana-drawer__nav {
+  padding: 1.5rem 1.25rem;
+  flex: 1;
+}
+
+.jana-drawer__link {
+  display: block;
+  padding: 0.875rem 0;
+  font-family: var(--jana-font-heading);
+  font-size: 1.5rem;
+  font-weight: 300;
+  color: var(--jana-text);
+  border-bottom: 1px solid var(--jana-border-light);
+  transition: opacity var(--jana-transition);
+}
+
+.jana-drawer__link:hover {
+  opacity: 0.6;
+}
+
+/* ============================================
+   HERO SECTION
+   ============================================ */
+.jana-hero {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  background: #111;
+}
+
+@media (max-width: 767px) {
+  .jana-hero {
+    min-height: 85vh;
+  }
+}
+
+.jana-hero__media {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.jana-hero__media img,
+.jana-hero__media video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.jana-hero__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.1) 50%, transparent 100%);
+  z-index: 2;
+}
+
+.jana-hero__content {
+  position: relative;
+  z-index: 3;
+  padding: 3rem 1.25rem 4rem;
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+  .jana-hero__content {
+    padding: 4rem 2.5rem 5rem;
+  }
+}
+
+.jana-hero__subtitle {
+  font-family: var(--jana-font-body);
+  font-size: 0.6875rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 1rem;
+  font-weight: 300;
+}
+
+.jana-hero__title {
+  font-family: var(--jana-font-heading);
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  font-weight: 300;
+  line-height: 0.9;
+  color: #fff;
+  margin-bottom: 1.5rem;
+  max-width: 700px;
+}
+
+.jana-hero__title em {
+  font-style: italic;
+}
+
+.jana-hero__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.875rem 2rem;
+  background: #fff;
+  color: #111;
+  font-family: var(--jana-font-body);
+  font-size: 0.6875rem;
+  font-weight: 400;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  transition: background var(--jana-transition), color var(--jana-transition);
+  text-decoration: none;
+}
+
+.jana-hero__btn:hover {
+  background: #111;
+  color: #fff;
+}
+
+.jana-hero__btn--outline {
+  background: transparent;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.jana-hero__btn--outline:hover {
+  background: #fff;
+  color: #111;
+  border-color: #fff;
+}
+
+/* Hero Slideshow */
+.jana-hero__slides {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.jana-hero__slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
+.jana-hero__slide.active {
+  opacity: 1;
+}
+
+.jana-hero__slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Hero Navigation Dots */
+.jana-hero__dots {
+  position: absolute;
+  bottom: 2rem;
+  right: 2.5rem;
+  z-index: 4;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.jana-hero__dot {
+  width: 2rem;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.4);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: background var(--jana-transition);
+}
+
+.jana-hero__dot.active {
+  background: #fff;
+}
+
+/* ============================================
+   SECTION HEADERS
+   ============================================ */
+.jana-section-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  gap: 1rem;
+}
+
+.jana-section-header__title {
+  font-family: var(--jana-font-heading);
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  font-weight: 300;
+  line-height: 1;
+  color: var(--jana-text);
+}
+
+.jana-section-header__link {
+  font-family: var(--jana-font-body);
+  font-size: 0.6875rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--jana-muted);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color var(--jana-transition);
+  padding-bottom: 0.25rem;
+  border-bottom: 1px solid transparent;
+}
+
+.jana-section-header__link:hover {
+  color: var(--jana-text);
+  border-bottom-color: var(--jana-text);
+}
+
+/* ============================================
+   PRODUCT CARD
+   ============================================ */
+.jana-product-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.jana-product-card__media {
+  position: relative;
+  aspect-ratio: 3/4;
+  overflow: hidden;
+  background: var(--jana-border-light);
+  margin-bottom: 0.75rem;
+}
+
+.jana-product-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease;
+}
+
+.jana-product-card:hover .jana-product-card__img {
+  transform: scale(1.03);
+}
+
+.jana-product-card__img--hover {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+}
+
+.jana-product-card:hover .jana-product-card__img--hover {
+  opacity: 1;
+}
+
+.jana-product-card:hover .jana-product-card__img--primary {
+  opacity: 0;
+}
+
+/* Product Badges */
+.jana-product-card__badges {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+  z-index: 2;
+}
+
+[dir="rtl"] .jana-product-card__badges {
+  left: auto;
+  right: 0.75rem;
+}
+
+.jana-product-card__badge {
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
+  font-family: var(--jana-font-body);
+  font-size: 0.5625rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.jana-product-card__badge--sale {
+  background: var(--jana-error);
+  color: #fff;
+}
+
+.jana-product-card__badge--new {
+  background: var(--jana-primary);
+  color: #fff;
+}
+
+.jana-product-card__badge--soldout {
+  background: var(--jana-muted);
+  color: #fff;
+}
+
+/* Quick Add Button */
+.jana-product-card__quick-add {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 0.75rem;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(4px);
+  transform: translateY(100%);
+  opacity: 0;
+  transition: transform var(--jana-transition), opacity var(--jana-transition);
+  z-index: 2;
+  text-align: center;
+}
+
+.jana-product-card:hover .jana-product-card__quick-add {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.jana-product-card__quick-add-btn {
+  width: 100%;
+  padding: 0.625rem;
+  background: var(--jana-primary);
+  color: #fff;
+  font-family: var(--jana-font-body);
+  font-size: 0.625rem;
+  font-weight: 400;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  transition: background var(--jana-transition);
+}
+
+.jana-product-card__quick-add-btn:hover {
+  background: #333;
+}
+
+/* Product Info */
+.jana-product-card__info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.jana-product-card__vendor {
+  font-family: var(--jana-font-body);
+  font-size: 0.625rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--jana-muted);
+}
+
+.jana-product-card__title {
+  font-family: var(--jana-font-body);
+  font-size: 0.8125rem;
+  font-weight: 400;
+  color: var(--jana-text);
+  line-height: 1.4;
+}
+
+.jana-product-card__title a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.jana-product-card__title a:hover {
+  opacity: 0.7;
+}
+
+.jana-product-card__price {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--jana-font-body);
+  font-size: 0.8125rem;
+  font-weight: 300;
+  color: var(--jana-text);
+}
+
+.jana-product-card__price--compare {
+  text-decoration: line-through;
+  color: var(--jana-muted);
+  font-size: 0.75rem;
+}
+
+.jana-product-card__price--sale {
+  color: var(--jana-error);
+}
+
+/* Color Swatches */
+.jana-product-card__swatches {
+  display: flex;
+  gap: 0.375rem;
+  margin-top: 0.375rem;
+}
+
+.jana-product-card__swatch {
+  width: 0.875rem;
+  height: 0.875rem;
+  border-radius: 50%;
+  border: 1px solid var(--jana-border);
+  cursor: pointer;
+  transition: transform var(--jana-transition);
+}
+
+.jana-product-card__swatch:hover {
+  transform: scale(1.2);
+}
+
+.jana-product-card__swatch.active {
+  box-shadow: 0 0 0 2px var(--jana-bg), 0 0 0 3px var(--jana-primary);
+}
+
+/* ============================================
+   PRODUCT GRID
+   ============================================ */
+.jana-product-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem 0.75rem;
+}
+
+@media (min-width: 768px) {
+  .jana-product-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem 1rem;
+  }
+}
+
+@media (min-width: 990px) {
+  .jana-product-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2.5rem 1.25rem;
+  }
+}
+
+/* ============================================
+   FEATURED COLLECTION SECTION
+   ============================================ */
+.jana-featured-collection {
+  padding: 3rem 0;
+}
+
+@media (min-width: 768px) {
+  .jana-featured-collection {
+    padding: 4rem 0;
+  }
+}
+
+/* ============================================
+   COLLECTION LINKS / CATEGORIES
+   ============================================ */
+.jana-collection-links {
+  padding: 2rem 0;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.jana-collection-links__inner {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0 1.25rem;
+  white-space: nowrap;
+}
+
+@media (min-width: 768px) {
+  .jana-collection-links__inner {
+    justify-content: center;
+    padding: 0;
+  }
+}
+
+.jana-collection-link {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.5rem 1.25rem;
+  border: 1px solid var(--jana-border);
+  font-family: var(--jana-font-body);
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--jana-text);
+  text-decoration: none;
+  transition: background var(--jana-transition), color var(--jana-transition);
+  white-space: nowrap;
+}
+
+.jana-collection-link:hover,
+.jana-collection-link.active {
+  background: var(--jana-primary);
+  color: #fff;
+  border-color: var(--jana-primary);
+}
+
+/* ============================================
+   MEDIA WITH TEXT SECTION
+   ============================================ */
+.jana-media-text {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  padding: 3rem 0;
+}
+
+@media (min-width: 768px) {
+  .jana-media-text {
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    padding: 4rem 0;
+  }
+}
+
+.jana-media-text__image {
+  aspect-ratio: 4/5;
+  overflow: hidden;
+}
+
+.jana-media-text__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.jana-media-text__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2rem 1.25rem;
+}
+
+@media (min-width: 768px) {
+  .jana-media-text__content {
+    padding: 3rem 4rem;
+  }
+}
+
+/* ============================================
+   MARQUEE / SCROLLING TEXT
+   ============================================ */
+.jana-marquee {
+  padding: 1.5rem 0;
+  overflow: hidden;
+  border-top: 1px solid var(--jana-border-light);
+  border-bottom: 1px solid var(--jana-border-light);
+}
+
+.jana-marquee__track {
+  display: flex;
+  animation: jana-marquee 25s linear infinite;
+  white-space: nowrap;
+}
+
+.jana-marquee__item {
+  font-family: var(--jana-font-heading);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 300;
+  font-style: italic;
+  padding: 0 2rem;
+  color: var(--jana-text);
+  opacity: 0.15;
+  flex-shrink: 0;
+}
+
+.jana-marquee__separator {
+  font-size: 0.5rem;
+  opacity: 0.3;
+  display: flex;
+  align-items: center;
+  padding: 0 1rem;
+}
+
+/* ============================================
+   NEWSLETTER
+   ============================================ */
+.jana-newsletter {
+  padding: 4rem 0;
+  text-align: center;
+  background: var(--jana-border-light);
+}
+
+.jana-newsletter__title {
+  font-family: var(--jana-font-heading);
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 300;
+  font-style: italic;
+  margin-bottom: 0.75rem;
+}
+
+.jana-newsletter__text {
+  font-family: var(--jana-font-body);
+  font-size: 0.8125rem;
+  color: var(--jana-muted);
+  margin-bottom: 1.5rem;
+  font-weight: 300;
+}
+
+.jana-newsletter__form {
+  display: flex;
+  max-width: 400px;
+  margin: 0 auto;
+  border: 1px solid var(--jana-border);
+}
+
+.jana-newsletter__input {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  border: none;
+  background: transparent;
+  font-family: var(--jana-font-body);
+  font-size: 0.8125rem;
+  color: var(--jana-text);
+  outline: none;
+}
+
+.jana-newsletter__input::placeholder {
+  color: var(--jana-muted);
+}
+
+.jana-newsletter__submit {
+  padding: 0.75rem 1.5rem;
+  background: var(--jana-primary);
+  color: #fff;
+  font-family: var(--jana-font-body);
+  font-size: 0.625rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  transition: background var(--jana-transition);
+}
+
+.jana-newsletter__submit:hover {
+  background: #333;
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+.jana-footer {
+  background: var(--jana-primary);
+  color: #fff;
+  padding: 4rem 0 0;
+}
+
+.jana-footer__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+  padding-bottom: 3rem;
+}
+
+@media (min-width: 768px) {
+  .jana-footer__grid {
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 2rem;
+  }
+}
+
+.jana-footer__brand-name {
+  font-family: var(--jana-font-heading);
+  font-size: 1.75rem;
+  font-weight: 300;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+.jana-footer__brand-text {
+  font-size: 0.8125rem;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.6;
+  max-width: 280px;
+}
+
+.jana-footer__heading {
+  font-family: var(--jana-font-body);
+  font-size: 0.625rem;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+  margin-bottom: 1.25rem;
+}
+
+.jana-footer__link {
+  display: block;
+  padding: 0.375rem 0;
+  font-size: 0.8125rem;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  transition: color var(--jana-transition);
+}
+
+.jana-footer__link:hover {
+  color: #fff;
+}
+
+.jana-footer__social {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.jana-footer__social-icon {
+  width: 2.25rem;
+  height: 2.25rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background var(--jana-transition), border-color var(--jana-transition);
+}
+
+.jana-footer__social-icon:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+.jana-footer__social-icon svg {
+  width: 1rem;
+  height: 1rem;
+  fill: #fff;
+}
+
+.jana-footer__bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 1.5rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .jana-footer__bottom {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+.jana-footer__copyright {
+  font-size: 0.6875rem;
+  color: rgba(255, 255, 255, 0.4);
+  font-weight: 300;
+  letter-spacing: 0.05em;
+}
+
+.jana-footer__payments {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.jana-footer__payments svg {
+  height: 1.25rem;
+  width: auto;
+  opacity: 0.5;
+}
+
+/* ============================================
+   CART DRAWER
+   ============================================ */
+.jana-cart-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  max-width: 420px;
+  height: 100%;
+  background: var(--jana-bg);
+  z-index: 80;
+  transform: translateX(100%);
+  transition: transform var(--jana-transition);
+  display: flex;
+  flex-direction: column;
+  box-shadow: -4px 0 30px rgba(0, 0, 0, 0.1);
+}
+
+[dir="rtl"] .jana-cart-drawer {
+  right: auto;
+  left: 0;
+  transform: translateX(-100%);
+  box-shadow: 4px 0 30px rgba(0, 0, 0, 0.1);
+}
+
+.jana-cart-drawer.active {
+  transform: translateX(0);
+}
+
+.jana-cart-drawer__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem;
+  border-bottom: 1px solid var(--jana-border-light);
+}
+
+.jana-cart-drawer__title {
+  font-family: var(--jana-font-heading);
+  font-size: 1.25rem;
+  font-weight: 300;
+}
+
+.jana-cart-drawer__count {
+  font-family: var(--jana-font-body);
+  font-size: 0.75rem;
+  color: var(--jana-muted);
+  margin-left: 0.5rem;
+}
+
+.jana-cart-drawer__close {
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.jana-cart-drawer__close svg {
+  width: 1.25rem;
+  height: 1.25rem;
+  stroke: currentColor;
+  stroke-width: 1.5;
+}
+
+.jana-cart-drawer__items {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1.25rem;
+}
+
+.jana-cart-drawer__empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  text-align: center;
+  color: var(--jana-muted);
+}
+
+.jana-cart-drawer__empty svg {
+  width: 3rem;
+  height: 3rem;
+  stroke: currentColor;
+  stroke-width: 1;
+  margin-bottom: 1rem;
+  opacity: 0.4;
+}
+
+.jana-cart-drawer__empty p {
+  font-size: 0.875rem;
+  font-weight: 300;
+}
+
+/* Cart Item */
+.jana-cart-item {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--jana-border-light);
+}
+
+.jana-cart-item__image {
+  width: 5rem;
+  height: 6.5rem;
+  flex-shrink: 0;
+  overflow: hidden;
+  background: var(--jana-border-light);
+}
+
+.jana-cart-item__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.jana-cart-item__details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.jana-cart-item__title {
+  font-size: 0.8125rem;
+  font-weight: 400;
+  margin-bottom: 0.25rem;
+}
+
+.jana-cart-item__variant {
+  font-size: 0.6875rem;
+  color: var(--jana-muted);
+  margin-bottom: 0.5rem;
+}
+
+.jana-cart-item__price {
+  font-size: 0.8125rem;
+  font-weight: 300;
+  margin-top: auto;
+}
+
+.jana-cart-item__remove {
+  font-size: 0.625rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--jana-muted);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  margin-top: 0.5rem;
+}
+
+.jana-cart-item__remove:hover {
+  color: var(--jana-error);
+}
+
+/* Quantity Selector */
+.jana-qty {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--jana-border);
+}
+
+.jana-qty__btn {
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.875rem;
+  color: var(--jana-text);
+  transition: background var(--jana-transition);
+}
+
+.jana-qty__btn:hover {
+  background: var(--jana-border-light);
+}
+
+.jana-qty__value {
+  width: 2.5rem;
+  text-align: center;
+  font-size: 0.75rem;
+  font-weight: 400;
+  border-left: 1px solid var(--jana-border);
+  border-right: 1px solid var(--jana-border);
+  height: 2rem;
+  line-height: 2rem;
+}
+
+/* Cart Footer */
+.jana-cart-drawer__footer {
+  padding: 1.25rem;
+  border-top: 1px solid var(--jana-border);
+}
+
+.jana-cart-drawer__subtotal {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.375rem;
+}
+
+.jana-cart-drawer__subtotal-label {
+  font-size: 0.6875rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--jana-muted);
+}
+
+.jana-cart-drawer__subtotal-value {
+  font-family: var(--jana-font-body);
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+.jana-cart-drawer__shipping-note {
+  font-size: 0.6875rem;
+  color: var(--jana-muted);
+  margin-bottom: 1rem;
+  font-weight: 300;
+}
+
+.jana-cart-drawer__checkout {
+  display: block;
+  width: 100%;
+  padding: 0.875rem;
+  background: var(--jana-primary);
+  color: #fff;
+  font-family: var(--jana-font-body);
+  font-size: 0.6875rem;
+  font-weight: 400;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  text-align: center;
+  border: none;
+  cursor: pointer;
+  transition: background var(--jana-transition);
+  text-decoration: none;
+}
+
+.jana-cart-drawer__checkout:hover {
+  background: #333;
+}
+
+/* ============================================
+   SEARCH OVERLAY
+   ============================================ */
+.jana-search-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.98);
+  z-index: 90;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 15vh;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--jana-transition), visibility var(--jana-transition);
+}
+
+.jana-search-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.jana-search-overlay__close {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.jana-search-overlay__close svg {
+  width: 1.5rem;
+  height: 1.5rem;
+  stroke: currentColor;
+  stroke-width: 1.5;
+}
+
+.jana-search-form {
+  width: 100%;
+  max-width: 600px;
+  padding: 0 1.25rem;
+}
+
+.jana-search-form__input {
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid var(--jana-primary);
+  padding: 1rem 0;
+  font-family: var(--jana-font-heading);
+  font-size: 2rem;
+  font-weight: 300;
+  color: var(--jana-text);
+  background: transparent;
+  outline: none;
+}
+
+.jana-search-form__input::placeholder {
+  color: var(--jana-muted);
+  opacity: 0.5;
+}
+
+/* ============================================
+   MOBILE BOTTOM NAV
+   ============================================ */
+.jana-mobile-nav {
+  display: flex;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--jana-bg);
+  border-top: 1px solid var(--jana-border-light);
+  z-index: 50;
+  padding: 0.5rem 0;
+  padding-bottom: calc(0.5rem + env(safe-area-inset-bottom));
+}
+
+@media (min-width: 990px) {
+  .jana-mobile-nav {
+    display: none;
+  }
+}
+
+.jana-mobile-nav__item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.375rem 0;
+  color: var(--jana-muted);
+  text-decoration: none;
+  transition: color var(--jana-transition);
+}
+
+.jana-mobile-nav__item.active,
+.jana-mobile-nav__item:hover {
+  color: var(--jana-primary);
+}
+
+.jana-mobile-nav__item svg {
+  width: 1.25rem;
+  height: 1.25rem;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  fill: none;
+}
+
+.jana-mobile-nav__item span {
+  font-size: 0.5625rem;
+  letter-spacing: 0.05em;
+  font-weight: 400;
+}
+
+/* ============================================
+   BUTTONS
+   ============================================ */
+.jana-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.875rem 2rem;
+  font-family: var(--jana-font-body);
+  font-size: 0.6875rem;
+  font-weight: 400;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all var(--jana-transition);
+  text-decoration: none;
+  border: none;
+}
+
+.jana-btn--primary {
+  background: var(--jana-primary);
+  color: #fff;
+}
+
+.jana-btn--primary:hover {
+  background: #333;
+}
+
+.jana-btn--secondary {
+  background: transparent;
+  color: var(--jana-text);
+  border: 1px solid var(--jana-border);
+}
+
+.jana-btn--secondary:hover {
+  background: var(--jana-primary);
+  color: #fff;
+  border-color: var(--jana-primary);
+}
+
+.jana-btn--white {
+  background: #fff;
+  color: var(--jana-primary);
+}
+
+.jana-btn--white:hover {
+  background: var(--jana-primary);
+  color: #fff;
+}
+
+/* ============================================
+   BACK TO TOP
+   ============================================ */
+.jana-back-to-top {
+  position: fixed;
+  bottom: 5rem;
+  right: 1.5rem;
+  width: 2.75rem;
+  height: 2.75rem;
+  background: var(--jana-bg);
+  border: 1px solid var(--jana-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 40;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--jana-transition), visibility var(--jana-transition);
+  cursor: pointer;
+}
+
+@media (min-width: 990px) {
+  .jana-back-to-top {
+    bottom: 2rem;
+  }
+}
+
+.jana-back-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.jana-back-to-top svg {
+  width: 1rem;
+  height: 1rem;
+  stroke: currentColor;
+  stroke-width: 1.5;
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+.jana-reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.jana-reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Card stagger animation */
+.jana-card-animate {
+  opacity: 0;
+  animation: jana-card-in 0.5s forwards;
+}
+
+@keyframes jana-card-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.jana-stagger-1 { animation-delay: 50ms; }
+.jana-stagger-2 { animation-delay: 100ms; }
+.jana-stagger-3 { animation-delay: 150ms; }
+.jana-stagger-4 { animation-delay: 200ms; }
+.jana-stagger-5 { animation-delay: 250ms; }
+.jana-stagger-6 { animation-delay: 300ms; }
+.jana-stagger-7 { animation-delay: 350ms; }
+.jana-stagger-8 { animation-delay: 400ms; }
+
+/* ============================================
+   UTILITIES
+   ============================================ */
+.jana-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.jana-text-center { text-align: center; }
+.jana-text-muted { color: var(--jana-muted); }
+
+/* Mobile bottom padding for fixed bottom nav */
+@media (max-width: 989px) {
+  .jana-main-content {
+    padding-bottom: 4rem;
+  }
+}

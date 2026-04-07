@@ -1,0 +1,116 @@
+{%- comment -%}
+  Jana Product Card Snippet
+  Usage: {% render 'jana-product-card', product: product, index: forloop.index %}
+{%- endcomment -%}
+
+{% liquid
+  assign current_variant = product.selected_or_first_available_variant
+  assign compare_price = current_variant.compare_at_price
+  assign price = current_variant.price
+  assign on_sale = false
+  if compare_price > price
+    assign on_sale = true
+  endif
+  assign sold_out = true
+  if current_variant.available
+    assign sold_out = false
+  endif
+%}
+
+<div class="jana-product-card jana-card-animate jana-stagger-{{ index | default: 1 }}">
+  <!-- Product Image -->
+  <div class="jana-product-card__media">
+    <a href="{{ product.url }}">
+      {% if product.featured_image != blank %}
+        <img
+          class="jana-product-card__img jana-product-card__img--primary"
+          src="{{ product.featured_image | image_url: width: 600 }}"
+          alt="{{ product.featured_image.alt | escape }}"
+          width="600"
+          height="800"
+          loading="lazy"
+        >
+      {% else %}
+        {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+      {% endif %}
+
+      {% if product.images.size > 1 %}
+        <img
+          class="jana-product-card__img jana-product-card__img--hover"
+          src="{{ product.images[1] | image_url: width: 600 }}"
+          alt="{{ product.images[1].alt | escape }}"
+          width="600"
+          height="800"
+          loading="lazy"
+        >
+      {% endif %}
+    </a>
+
+    <!-- Badges -->
+    <div class="jana-product-card__badges">
+      {% if sold_out %}
+        <span class="jana-product-card__badge jana-product-card__badge--soldout">Sold Out</span>
+      {% elsif on_sale %}
+        {% assign discount = compare_price | minus: price | times: 100 | divided_by: compare_price %}
+        <span class="jana-product-card__badge jana-product-card__badge--sale">-{{ discount }}%</span>
+      {% endif %}
+
+      {% if product.tags contains 'new' %}
+        <span class="jana-product-card__badge jana-product-card__badge--new">New</span>
+      {% endif %}
+    </div>
+
+    <!-- Quick Add -->
+    {% unless sold_out %}
+      <div class="jana-product-card__quick-add">
+        {% if product.variants.size == 1 %}
+          <form data-jana-add-to-cart>
+            <input type="hidden" name="id" value="{{ current_variant.id }}">
+            <input type="hidden" name="quantity" value="1">
+            <button type="submit" class="jana-product-card__quick-add-btn">
+              Add to Cart
+            </button>
+          </form>
+        {% else %}
+          <a href="{{ product.url }}" class="jana-product-card__quick-add-btn" style="display:block; text-decoration:none;">
+            Select Options
+          </a>
+        {% endif %}
+      </div>
+    {% endunless %}
+  </div>
+
+  <!-- Product Info -->
+  <div class="jana-product-card__info">
+    {% if product.vendor != blank %}
+      <span class="jana-product-card__vendor">{{ product.vendor }}</span>
+    {% endif %}
+
+    <h3 class="jana-product-card__title">
+      <a href="{{ product.url }}">{{ product.title }}</a>
+    </h3>
+
+    <div class="jana-product-card__price">
+      {% if on_sale %}
+        <span class="jana-product-card__price--sale">{{ price | money }}</span>
+        <span class="jana-product-card__price--compare">{{ compare_price | money }}</span>
+      {% else %}
+        <span>{{ price | money }}</span>
+      {% endif %}
+    </div>
+
+    <!-- Color Swatches -->
+    {% if product.options_by_name['Color'] %}
+      <div class="jana-product-card__swatches">
+        {% for value in product.options_by_name['Color'].values %}
+          {% assign color_handle = value | handleize %}
+          <span
+            class="jana-product-card__swatch {% if forloop.first %}active{% endif %}"
+            style="background-color: {{ color_handle }};"
+            title="{{ value }}"
+          ></span>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+</div>

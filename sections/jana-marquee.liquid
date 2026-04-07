@@ -1,0 +1,44 @@
+<!-- Jana Marquee / Scrolling Text -->
+<section class="jana-section jana-marquee">
+  <div class="jana-marquee__track">
+    {% for i in (1..3) %}
+      {% for block in section.blocks %}
+        <span class="jana-marquee__item jana-serif" {{ block.shopify_attributes }}>{{ block.settings.text }}</span>
+        <span class="jana-marquee__separator">&#9670;</span>
+      {% endfor %}
+    {% endfor %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Jana Marquee",
+  "class": "jana-marquee-section",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "text",
+      "name": "Text",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "Minimal Elegance"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Jana Marquee",
+      "blocks": [
+        { "type": "text", "settings": { "text": "New Collection" } },
+        { "type": "text", "settings": { "text": "Minimal Elegance" } },
+        { "type": "text", "settings": { "text": "Free Shipping" } },
+        { "type": "text", "settings": { "text": "Sustainable Fashion" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,87 @@
+<!-- Jana Collection Links / Category Bar -->
+<section class="jana-section jana-collection-links">
+  <div class="jana-collection-links__inner">
+    {% if section.settings.show_all %}
+      <a href="/collections/all" class="jana-collection-link {% if request.path == '/collections/all' %}active{% endif %}">
+        All
+      </a>
+    {% endif %}
+
+    {% for block in section.blocks %}
+      {% if block.settings.collection != blank %}
+        <a
+          href="{{ block.settings.collection.url }}"
+          class="jana-collection-link {% if request.path == block.settings.collection.url %}active{% endif %}"
+          {{ block.shopify_attributes }}
+        >
+          {{ block.settings.label | default: block.settings.collection.title }}
+        </a>
+      {% elsif block.settings.link != blank %}
+        <a href="{{ block.settings.link }}" class="jana-collection-link" {{ block.shopify_attributes }}>
+          {{ block.settings.label | default: 'Collection' }}
+        </a>
+      {% endif %}
+    {% endfor %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Jana Collection Links",
+  "class": "jana-collection-links-section",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_all",
+      "label": "Show 'All' Link",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "collection",
+      "name": "Collection",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Custom Label"
+        }
+      ]
+    },
+    {
+      "type": "link",
+      "name": "Custom Link",
+      "settings": [
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Collection"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Jana Collection Links",
+      "blocks": [
+        { "type": "link", "settings": { "label": "Women" } },
+        { "type": "link", "settings": { "label": "Men" } },
+        { "type": "link", "settings": { "label": "New Arrivals" } },
+        { "type": "link", "settings": { "label": "Sale" } }
+      ]
+    }
+  ]
+}
+{% endschema %}
